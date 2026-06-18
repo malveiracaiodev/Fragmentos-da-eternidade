@@ -1,9 +1,9 @@
 // ===============================
-// 🌌 UNIVERSE ENGINE - CORE (v1.1)
+// 🌌 UNIVERSE ENGINE - CORE (v1.2)
 // ===============================
 
 // ===============================
-// 🌌 CORE STATE (DEFAULT)
+// 🌌 DEFAULT STATE
 // ===============================
 const defaultState = {
   characters: {
@@ -33,18 +33,18 @@ const defaultState = {
 };
 
 // ===============================
-// 🌌 UNIVERSE ENGINE
+// 🌌 ENGINE CORE
 // ===============================
 const Universe = {
-  version: "1.1",
+  version: "1.2",
 
   state: structuredClone(defaultState),
+
+  listeners: {},
 
   // ===============================
   // 🔥 EVENT SYSTEM
   // ===============================
-  listeners: {},
-
   on(event, callback) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
@@ -56,6 +56,17 @@ const Universe = {
     const list = this.listeners[event];
     if (!list) return;
     list.forEach(cb => cb(data));
+  },
+
+  // ===============================
+  // 🚀 READY EVENT (NOVO)
+  // ===============================
+  ready: false,
+
+  init() {
+    this.ready = true;
+    this.trigger("universe_ready", this.state);
+    console.log("🌌 Universe Ready");
   }
 };
 
@@ -73,7 +84,9 @@ const Storage = {
   load() {
     const data = localStorage.getItem("fragmentos_universe");
 
-    if (data) {
+    if (!data) return;
+
+    try {
       const parsed = JSON.parse(data);
 
       Universe.state = {
@@ -88,6 +101,10 @@ const Storage = {
           ...(parsed.lore || {})
         }
       };
+
+    } catch (e) {
+      console.warn("Erro ao carregar save, resetando universo");
+      Universe.state = structuredClone(defaultState);
     }
   },
 
@@ -98,6 +115,11 @@ const Storage = {
 };
 
 // ===============================
-// 🚀 INIT
+// 🚀 INIT BOOT SEQUENCE
 // ===============================
 Storage.load();
+
+// garante inicialização segura
+document.addEventListener("DOMContentLoaded", () => {
+  Universe.init();
+});
