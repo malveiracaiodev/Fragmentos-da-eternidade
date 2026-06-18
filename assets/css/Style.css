@@ -1,0 +1,73 @@
+/* =======================================
+   🌌 UI VIVA DO UNIVERSO
+======================================= */
+
+/* estado base escuro (já teu padrão) */
+body {
+  transition: background 0.8s ease, color 0.5s ease;
+}
+
+/* =======================================
+   🔵 CALEB DESBLOQUEADO
+======================================= */
+body.caleb-unlocked {
+  background: radial-gradient(circle at top, #06102a, #000);
+}
+
+body.caleb-unlocked .hero img {
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* =======================================
+   🔥 ORIGEM DESPERTA (CALEB FULL)
+======================================= */
+body.caleb-origin {
+  background: radial-gradient(circle at top, #001a2f, #000);
+}
+
+body.caleb-origin .card,
+body.caleb-origin .wiki-item {
+  border-color: rgba(0, 170, 255, 0.6);
+  box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
+}
+
+/* efeito mais “vivo” */
+body.caleb-origin .name {
+  text-shadow: 0 0 20px rgba(0, 170, 255, 0.8);
+}
+
+/* =======================================
+   💎 ALTO NÍVEL DE FRAGMENTOS
+======================================= */
+body.high-fragments {
+  background: radial-gradient(circle at top, #120018, #000);
+}
+
+body.high-fragments .hero img {
+  filter: hue-rotate(30deg) brightness(1.2);
+}
+
+body.high-fragments .card {
+  border-color: rgba(255, 0, 200, 0.3);
+}
+
+/* =======================================
+   🌌 EFEITO DE “UNIVERSO RESPIRANDO”
+======================================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0,170,255,0.05), transparent 60%);
+  pointer-events: none;
+  animation: universePulse 6s infinite ease-in-out;
+}
+
+@keyframes universePulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
