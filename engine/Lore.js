@@ -5,11 +5,11 @@
 const Lore = {
 
   // ===============================
-  // 🔥 CALIBRAÇÃO DO CALEB
+  // 🔥 CALEB ORIGIN
   // ===============================
   unlockCalebOrigin() {
 
-    const caleb = Universe.state.characters.caleb;
+    const caleb = Universe.state.characters?.caleb;
 
     if (!caleb || caleb.origin) return;
 
@@ -18,38 +18,51 @@ const Lore = {
 
     Storage.save();
 
-    // 🔥 EVENTO GLOBAL (para UI, 3D, etc)
+    // 🔥 evento global padronizado
+    Universe.trigger?.("lore_event", {
+      type: "caleb_origin_unlocked",
+      character: "caleb",
+      data: caleb
+    });
+
     Universe.trigger?.("caleb_origin_unlocked", caleb);
   },
 
   // ===============================
-  // 👤 CHECK CALEB
+  // 👤 CHECK
   // ===============================
   isCalebOriginUnlocked() {
-    return !!Universe.state.characters.caleb?.origin;
+    return !!Universe.state.characters?.caleb?.origin;
   },
 
   // ===============================
-  // 🧬 DESBLOQUEIO GENÉRICO
+  // 🧬 UNLOCK GENÉRICO
   // ===============================
   unlockCharacter(id, customName = null) {
 
-    const char = Universe.state.characters[id];
+    const char = Universe.state.characters?.[id];
 
-    if (!char) return;
-
-    if (char.unlocked) return;
+    if (!char || char.unlocked) return;
 
     char.unlocked = true;
 
     if (customName) {
       char.name = customName;
-      char.nome = customName; // compatibilidade com seu JSON antigo
+      char.nome = customName;
     }
 
     Storage.save();
 
-    // 🔥 evento global
-    Universe.trigger?.("character_unlocked", { id, char });
+    // 🔥 evento unificado
+    Universe.trigger?.("lore_event", {
+      type: "character_unlocked",
+      character: id,
+      data: char
+    });
+
+    Universe.trigger?.("character_unlocked", {
+      id,
+      char
+    });
   }
 };
