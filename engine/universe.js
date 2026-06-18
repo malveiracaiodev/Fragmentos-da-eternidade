@@ -1,4 +1,4 @@
-   // ===============================
+// ===============================
 // 🌌 UNIVERSE ENGINE - CORE (v1.1)
 // ===============================
 
@@ -13,14 +13,12 @@ const defaultState = {
       logs: 0,
       name: "Caleb"
     },
-
     nyx: {
       unlocked: false,
       origin: false,
       logs: 0,
       name: "???"
     },
-
     orion: {
       unlocked: false,
       origin: false,
@@ -43,7 +41,7 @@ const Universe = {
   state: structuredClone(defaultState),
 
   // ===============================
-  // 🔥 EVENT SYSTEM (BASE)
+  // 🔥 EVENT SYSTEM
   // ===============================
   listeners: {},
 
@@ -57,7 +55,6 @@ const Universe = {
   trigger(event, data) {
     const list = this.listeners[event];
     if (!list) return;
-
     list.forEach(cb => cb(data));
   }
 };
@@ -79,7 +76,6 @@ const Storage = {
     if (data) {
       const parsed = JSON.parse(data);
 
-      // 🔥 merge seguro (não destrói estrutura nova)
       Universe.state = {
         ...structuredClone(defaultState),
         ...parsed,
@@ -104,33 +100,4 @@ const Storage = {
 // ===============================
 // 🚀 INIT
 // ===============================
-Storage.load();                                                                                               if (data) {
-                                                                                                        Universe.state = JSON.parse(data);
-                                                                                                            }
-                                                                                                              },
-
-                                                                                                                reset() {
-                                                                                                                    localStorage.removeItem("fragmentos_universe");
-                                                                                                                        location.reload();
-                                                                                                                          }
-                                                                                                                          };
-
-                                                                                                                          // carregar automaticamente ao iniciar
-                                                                                                                          Storage.load();
-                                                                                                                          Universe.state.characters = {
-                                                                                                                              caleb: {
-                                                                                                                                  unlocked: true,
-                                                                                                                                      name: "CALEB"
-                                                                                                                                        },
-
-                                                                                                                                          nyx: {
-                                                                                                                                              unlocked: false,
-                                                                                                                                                  name: "???"
-                                                                                                                                                    },
-
-                                                                                                                                                      orion: {
-                                                                                                                                                          unlocked: false,
-                                                                                                                                                              name: "???"
-                                                                                                                                                                }
-                                                                                                                                                                };
-                                                                                                                          
+Storage.load();
