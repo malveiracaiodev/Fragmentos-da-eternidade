@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caleb | Fragmentos da Eternidade</title>
+
+  <link rel="stylesheet" href="caleb.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LADO ESQUERDO -->
+  <div class="left">
+
+    <div class="aura"></div>
+
+    <div id="canvas-container"></div>
+
+    <p class="subtitle">
+      Entidade desconhecida detectada
+    </p>
+
+  </div>
+
+  <!-- LADO DIREITO -->
+  <div class="right">
+
+    <h1 class="name">CALEB</h1>
+
+    <div class="info-box">
+      <h3>IDENTIDADE</h3>
+      <p>Idade: <span id="idade">???</span></p>
+      <p>Origem: <span id="origem">???</span></p>
+      <p>Status: <span id="status">???</span></p>
+    </div>
+
+    <div class="info-box">
+      <h3>REGISTROS</h3>
+      <p id="log1">[ BLOQUEADO ] Fragmento 01</p>
+      <p id="log2">[ BLOQUEADO ] Fragmento 02</p>
+    </div>
+
+    <button id="unlockBtn">Desbloquear fragmento</button>
+
+  </div>
+
+</div>
+
+<!-- =============================== -->
+<!-- SCRIPTS (ORDEM CORRETA) -->
+<!-- =============================== -->
+
+<script src="../Universe.js"></script>
+<script src="../Storage.js"></script>
+<script src="../Lore.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="caleb3d.js"></script>
+<script src="caleb.js"></script>
+
+</body>
+
+</html>
