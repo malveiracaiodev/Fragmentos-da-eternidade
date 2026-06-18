@@ -1,7 +1,7 @@
 const grid = document.getElementById("grid");
 
 // ===============================
-// 🧬 CRIA CARD DE PERSONAGEM
+// 🧬 CRIA CARD
 // ===============================
 function createCard(id, data) {
 
@@ -12,6 +12,7 @@ function createCard(id, data) {
 
   if (isUnlocked) {
     card.href = `characters/${id}.html`;
+    card.classList.add("unlocked");
   } else {
     card.href = "javascript:void(0)";
     card.classList.add("locked");
@@ -26,30 +27,38 @@ function createCard(id, data) {
 }
 
 // ===============================
-// 🌌 RENDER DA LISTA
+// 🌌 RENDER
 // ===============================
 function render() {
 
-  if (!grid) {
-    console.warn("Grid não encontrado");
-    return;
-  }
-
-  if (!window.Universe) {
-    console.warn("Universe não carregado");
-    return;
-  }
+  if (!grid) return;
+  if (!window.Universe) return;
 
   const chars = Universe.state.characters;
 
-  grid.innerHTML = ""; // evita duplicação
+  grid.innerHTML = "";
 
   for (let id in chars) {
     grid.appendChild(createCard(id, chars[id]));
   }
+
+  console.log("Personagens renderizados");
+}
+
+// ===============================
+// 🔥 UI REATIVA (IMPORTANTE)
+// ===============================
+function attachUniverseListener() {
+  if (!window.Universe?.on) return;
+
+  Universe.on("character_updated", render);
+  Universe.on("chapter_loaded", render);
 }
 
 // ===============================
 // 🚀 INIT
 // ===============================
-document.addEventListener("DOMContentLoaded", render);
+document.addEventListener("DOMContentLoaded", () => {
+  render();
+  attachUniverseListener();
+});
