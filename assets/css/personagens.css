@@ -1,46 +1,114 @@
 body {
-      margin: 0;
-        font-family: Arial;
-          background: radial-gradient(circle at top, #050816, #000);
-            color: white;
-            }
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #050816, #000);
+  color: white;
+}
 
-            .top {
-              text-align: center;
-                padding: 40px;
-                }
+/* TOPO */
+.top {
+  text-align: center;
+  padding: 40px 20px;
+}
 
-                .top h1 {
-                  color: #00aaff;
-                    letter-spacing: 6px;
-                    }
+.top h1 {
+  color: #00aaff;
+  letter-spacing: 6px;
+  font-size: 28px;
+}
 
-                    .grid {
-                      display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                          gap: 20px;
-                            padding: 40px;
-                            }
+.top p {
+  color: #94a3b8;
+}
 
-                            .card {
-                              padding: 20px;
-                                border-left: 2px solid #00aaff;
-                                  background: rgba(255,255,255,0.03);
-                                    transition: 0.3s;
-                                      cursor: pointer;
-                                      }
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
 
-                                      .card:hover {
-                                        transform: scale(1.05);
-                                          box-shadow: 0 0 25px rgba(0,170,255,0.2);
-                                          }
+/* CARD BASE */
+.card {
+  position: relative;
+  padding: 20px;
+  border-left: 2px solid #00aaff;
+  background: rgba(255,255,255,0.03);
+  transition: 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+}
 
-                                          .card h2 {
-                                            color: #00aaff;
-                                            }
+/* EFEITO DE FUNDO (GLOW SUAVE) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,170,255,0.12), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
 
-                                            .locked {
-                                              opacity: 0.4;
-                                                filter: blur(1px);
-                                                  pointer-events: none;
-                                                  }
+.card:hover::before {
+  opacity: 1;
+}
+
+/* HOVER */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0,170,255,0.25);
+}
+
+/* TITULO */
+.card h2 {
+  color: #00aaff;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+/* TEXTO */
+.card p {
+  color: #cbd5e1;
+}
+
+/* STATUS */
+.card span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* BLOQUEADO */
+.locked {
+  opacity: 0.35;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+/* DESBLOQUEADO (ENGINE FUTURO) */
+.unlocked {
+  border-left: 2px solid #00aaff;
+}
+
+/* MELHORIA DE CLIQUE */
+.card a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .grid {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .top h1 {
+    font-size: 22px;
+  }
+}
