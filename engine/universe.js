@@ -35,7 +35,7 @@ const defaultState = {
 // ===============================
 // 🌌 ENGINE CORE
 // ===============================
-const Universe = {
+const universe = {
   version: "1.2",
 
   state: structuredClone(defaultState),
@@ -73,7 +73,7 @@ const Universe = {
 // ===============================
 // 💾 STORAGE SYSTEM
 // ===============================
-const Storage = {
+const storage = {
   save() {
     localStorage.setItem(
       "fragmentos_universe",
@@ -104,7 +104,7 @@ const Storage = {
 
     } catch (e) {
       console.warn("Erro ao carregar save, resetando universo");
-      Universe.state = structuredClone(defaultState);
+      universe.state = structuredClone(defaultState);
     }
   },
 
@@ -121,5 +121,5 @@ Storage.load();
 
 // garante inicialização segura
 document.addEventListener("DOMContentLoaded", () => {
-  Universe.init();
+  universe.init();
 });
