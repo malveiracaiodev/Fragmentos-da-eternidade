@@ -6,7 +6,7 @@
   "energia": "Chama Azul",
   "status": "Vivo",
 
-  "unlocked": true,
+  "baseUnlocked": true,
 
   "progressao": {
     "origemDesbloqueada": false,
@@ -25,6 +25,7 @@
 
   "engine": {
     "reageAo3D": true,
+    "afetaUI": true,
     "afetaCaleb3D": true
   }
 }
