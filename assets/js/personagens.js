@@ -1,31 +1,55 @@
 const grid = document.getElementById("grid");
 
+// ===============================
+// 🧬 CRIA CARD DE PERSONAGEM
+// ===============================
 function createCard(id, data) {
 
   const card = document.createElement("a");
-    card.className = "card";
+  card.className = "card";
 
-      if (data.unlocked) {
-          card.href = `characters/${id}.html`;
-            } else {
-                card.classList.add("locked");
-                  }
+  const isUnlocked = data.unlocked === true;
 
-                    card.innerHTML = `
-                        <h2>${data.name}</h2>
-                            <p>${data.unlocked ? "Entidade ativa" : "Bloqueado"}</p>
-                              `;
+  if (isUnlocked) {
+    card.href = `characters/${id}.html`;
+  } else {
+    card.href = "javascript:void(0)";
+    card.classList.add("locked");
+  }
 
-                                return card;
-                                }
+  card.innerHTML = `
+    <h2>${data.name}</h2>
+    <p>${isUnlocked ? "Entidade ativa" : "Bloqueado"}</p>
+  `;
 
-                                function render() {
+  return card;
+}
 
-                                  const chars = Universe.state.characters;
+// ===============================
+// 🌌 RENDER DA LISTA
+// ===============================
+function render() {
 
-                                    for (let id in chars) {
-                                        grid.appendChild(createCard(id, chars[id]));
-                                          }
-                                          }
+  if (!grid) {
+    console.warn("Grid não encontrado");
+    return;
+  }
 
-                                          render();
+  if (!window.Universe) {
+    console.warn("Universe não carregado");
+    return;
+  }
+
+  const chars = Universe.state.characters;
+
+  grid.innerHTML = ""; // evita duplicação
+
+  for (let id in chars) {
+    grid.appendChild(createCard(id, chars[id]));
+  }
+}
+
+// ===============================
+// 🚀 INIT
+// ===============================
+document.addEventListener("DOMContentLoaded", render);
