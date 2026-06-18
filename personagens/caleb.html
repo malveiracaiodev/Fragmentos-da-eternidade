@@ -9,51 +9,47 @@
 
         <body>
 
-          <div class="container">
+        <div class="container">
 
-              <!-- LADO ESQUERDO - VISUAL -->
-                  <div class="left">
+          <!-- LADO ESQUERDO -->
+            <div class="left">
 
-                        <div class="aura"></div>
+                <div class="aura"></div>
 
-                              <div class="model-box">
-                                      <!-- Placeholder do 3D (depois entra Three.js aqui) -->
-                                              <div class="model-placeholder">
-                                                        <span>CALEB</span>
-                                                                </div>
-                                                                      </div>
+                    <div id="canvas-container"></div>
 
-                                                                            <p class="subtitle">Entidade desconhecida detectada</p>
+                        <p class="subtitle">Entidade desconhecida detectada</p>
 
-                                                                                </div>
+                          </div>
 
-                                                                                    <!-- LADO DIREITO - INFORMAÇÕES -->
-                                                                                        <div class="right">
+                            <!-- LADO DIREITO -->
+                              <div class="right">
 
-                                                                                              <h1 class="name">CALEB</h1>
+                                  <h1 class="name">CALEB</h1>
 
-                                                                                                    <div class="info-box">
-                                                                                                            <h3>IDENTIDADE</h3>
+                                      <div class="info-box">
+                                            <h3>IDENTIDADE</h3>
+                                                  <p>Idade: <span id="idade">???</span></p>
+                                                        <p>Origem: <span id="origem">???</span></p>
+                                                              <p>Status: <span id="status">???</span></p>
+                                                                  </div>
 
-                                                                                                                    <p>Idade: <span id="idade">???</span></p>
-                                                                                                                            <p>Origem: <span id="origem">???</span></p>
-                                                                                                                                    <p>Status: <span id="status">???</span></p>
+                                                                      <div class="info-box">
+                                                                            <h3>REGISTROS</h3>
+                                                                                  <p id="log1">[ BLOQUEADO ] Fragmento 01</p>
+                                                                                        <p id="log2">[ BLOQUEADO ] Fragmento 02</p>
+                                                                                            </div>
 
-                                                                                                                                          </div>
+                                                                                                <button onclick="desbloquear()">Desbloquear fragmento</button>
 
-                                                                                                                                                <div class="info-box">
-                                                                                                                                                        <h3>REGISTROS</h3>
+                                                                                                  </div>
 
-                                                                                                                                                                <p class="locked" id="log1">[ BLOQUEADO ] Fragmento 01</p>
-                                                                                                                                                                        <p class="locked" id="log2">[ BLOQUEADO ] Fragmento 02</p>
-                                                                                                                                                                              </div>
+                                                                                                  </div>
 
-                                                                                                                                                                                    <button onclick="desbloquearOrigem()">Desbloquear fragmento</button>
+                                                                                                  <!-- THREE.JS -->
+                                                                                                  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+                                                                                                  <script src="caleb3d.js"></script>
+                                                                                                  <script src="caleb.js"></script>
 
-                                                                                                                                                                                        </div>
-
-                                                                                                                                                                                          </div>
-
-                                                                                                                                                                                            <script src="caleb.js"></script>
-                                                                                                                                                                                            </body>
-                                                                                                                                                                                            </html>
+                                                                                                  </body>
+                                                                                                  </html>
