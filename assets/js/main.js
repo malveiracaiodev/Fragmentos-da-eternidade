@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🧠 ENGINE INIT
 // ===============================
 function inicializarEngine() {
-  if (!window.Universe) {
+  if (!window.universe) {
     console.warn("Engine não encontrada");
     return;
   }
@@ -33,8 +33,8 @@ function inicializarEngine() {
   console.log("Engine conectada ao universo");
 
   // escuta eventos do universo
-  if (Universe.on) {
-    Universe.on("chapter_loaded", atualizarUIViva);
+  if (universe.on) {
+    universe.on("chapter_loaded", atualizarUIViva);
   }
 }
 
@@ -42,7 +42,7 @@ function inicializarEngine() {
 // 🎨 UI VIVA (CORE DO SISTEMA)
 // ===============================
 function atualizarUIViva() {
-  if (!window.Universe) return;
+  if (!window.universe) return;
 
   const body = document.body;
 
@@ -97,7 +97,7 @@ async function carregarUltimoCapitulo() {
     `;
 
     // 🔥 evento do universo
-    if (window.Universe?.trigger) {
+    if (window.universe?.trigger) {
       Universe.trigger("chapter_loaded", ultimoCapitulo);
     }
 
