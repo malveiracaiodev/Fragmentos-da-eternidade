@@ -1,351 +1,295 @@
 /* =======================================
-   FRAGMENTOS DA ETERNIDADE
-      STYLE.CSS - MARK I
-      ======================================= */
+FRAGMENTOS DA ETERNIDADE
+STYLE.CSS - MARK I
+======================================= */
 
-      /* RESET */
+/* RESET */
 
-      *{
-          margin:0;
-              padding:0;
-                  box-sizing:border-box;
-                  }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-                  /*
-                  Remove margens padrão do navegador
-                  e facilita os cálculos dos elementos
-                  */
+/* BODY */
 
+body{
+background:#050814;
+color:#ffffff;
+font-family:Arial, sans-serif;
+line-height:1.6;
+}
 
-                  /* BODY */
+/* LINKS */
 
-                  body{
-                      background:#050814;
-                          color:#ffffff;
-                              font-family:Arial, sans-serif;
-                                  line-height:1.6;
-                                  }
+a{
+text-decoration:none;
+color:inherit;
+}
 
-                                  /*
-                                  Fundo principal
-                                  Cor do texto
-                                  Fonte padrão
-                                  */
+/* BANNER */
 
+.hero{
+width:100%;
+}
 
-                                  /* LINKS */
+.hero img{
+width:100%;
+max-height:500px;
+object-fit:cover;
+display:block;
+}
 
-                                  a{
-                                      text-decoration:none;
-                                          color:inherit;
-                                          }
+/* MENU */
 
-                                          /*
-                                          Remove sublinhado dos links
-                                          */
+nav{
 
+background:#0b1020;
 
-                                          /* HERO */
+display:flex;
 
-                                          .hero{
-                                              position:relative;
-                                                  text-align:center;
-                                                  }
+justify-content:center;
 
-                                                  /*
-                                                  Container do banner
-                                                  */
+flex-wrap:wrap;
 
+gap:20px;
 
-                                                  .hero img{
-                                                      width:100%;
-                                                          display:block;
-                                                          }
+padding:15px;
 
-                                                          /*
-                                                          Banner ocupa toda largura
-                                                          */
+border-bottom:1px solid #1d2a4f;
 
+}
 
-                                                          .hero-content{
+nav a{
 
-                                                              position:absolute;
+transition:.3s;
 
-                                                                  top:50%;
-                                                                      left:50%;
+font-weight:bold;
 
-                                                                          transform:translate(-50%,-50%);
+}
 
-                                                                              width:90%;
-                                                                              }
+nav a:hover{
 
-                                                                              /*
-                                                                              Centraliza o conteúdo sobre a imagem
-                                                                              */
+color:#60a5fa;
 
+}
 
-                                                                              .hero-content h1{
+/* MAIN */
 
-                                                                                  font-size:3rem;
+main{
 
-                                                                                      text-shadow:
-                                                                                          0 0 10px rgba(255,255,255,.3),
-                                                                                              0 0 25px rgba(59,130,246,.4);
+max-width:1200px;
 
-                                                                                              }
+margin:auto;
 
-                                                                                              /*
-                                                                                              Título principal
-                                                                                              */
+padding:30px 20px;
 
+}
 
-                                                                                              .hero-content p{
+/* CARDS */
 
-                                                                                                  margin-top:10px;
+.card{
 
-                                                                                                      color:#d1d5db;
+background:#0d1324;
 
-                                                                                                          font-size:1.1rem;
+border:1px solid #1d2a4f;
 
-                                                                                                          }
+border-radius:15px;
 
-                                                                                                          /*
-                                                                                                          Subtítulo
-                                                                                                          */
+padding:20px;
 
+margin-bottom:20px;
 
-                                                                                                          /* BOTÕES HERO */
+transition:.3s;
 
-                                                                                                          .hero-buttons{
+}
 
-                                                                                                              margin-top:20px;
+.card:hover{
 
-                                                                                                                  display:flex;
+transform:translateY(-5px);
 
-                                                                                                                      justify-content:center;
+box-shadow:
+0 0 20px rgba(59,130,246,.15);
 
-                                                                                                                          gap:15px;
+}
 
-                                                                                                                              flex-wrap:wrap;
+.card h2{
 
-                                                                                                                              }
+margin-bottom:10px;
 
+}
 
-                                                                                                                              .btn{
+/* BOTÃO */
 
-                                                                                                                                  background:#2563eb;
+.btn{
 
-                                                                                                                                      color:white;
+display:inline-block;
 
-                                                                                                                                          padding:12px 20px;
+margin-top:15px;
 
-                                                                                                                                              border-radius:10px;
+background:#2563eb;
 
-                                                                                                                                                  transition:.3s;
+color:white;
 
-                                                                                                                                                  }
+padding:12px 20px;
 
-                                                                                                                                                  /*
-                                                                                                                                                  Botão padrão
-                                                                                                                                                  */
+border-radius:10px;
 
+transition:.3s;
 
-                                                                                                                                                  .btn:hover{
+}
 
-                                                                                                                                                      background:#3b82f6;
+.btn:hover{
 
-                                                                                                                                                          transform:translateY(-3px);
+background:#3b82f6;
 
-                                                                                                                                                          }
+transform:translateY(-3px);
 
-                                                                                                                                                          /*
-                                                                                                                                                          Animação ao passar o dedo/mouse
-                                                                                                                                                          */
+}
 
+/* GRID */
 
-                                                                                                                                                          /* MENU */
+.grid{
 
-                                                                                                                                                          nav{
+display:grid;
 
-                                                                                                                                                              background:#0b1020;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
 
-                                                                                                                                                                  display:flex;
+gap:20px;
 
-                                                                                                                                                                      justify-content:center;
+}
 
-                                                                                                                                                                          flex-wrap:wrap;
+/* ITENS DA WIKI */
 
-                                                                                                                                                                              gap:20px;
+.wiki-item{
 
-                                                                                                                                                                                  padding:15px;
+background:#0d1324;
 
-                                                                                                                                                                                      border-bottom:1px solid #1d2a4f;
+border:1px solid #1d2a4f;
 
-                                                                                                                                                                                      }
+border-radius:15px;
 
+padding:20px;
 
-                                                                                                                                                                                      nav a{
+transition:.3s;
 
-                                                                                                                                                                                          transition:.3s;
+}
 
-                                                                                                                                                                                          }
+.wiki-item:hover{
 
+border-color:#3b82f6;
 
-                                                                                                                                                                                          nav a:hover{
+transform:translateY(-5px);
 
-                                                                                                                                                                                              color:#60a5fa;
+}
 
-                                                                                                                                                                                              }
+/* PÁGINA DE CAPÍTULOS */
 
-                                                                                                                                                                                              /*
-                                                                                                                                                                                              Menu principal
-                                                                                                                                                                                              */
+.page-header{
 
+text-align:center;
 
-                                                                                                                                                                                              /* MAIN */
+padding:40px 20px;
 
-                                                                                                                                                                                              main{
+}
 
-                                                                                                                                                                                                  max-width:1200px;
+.page-header h1{
 
-                                                                                                                                                                                                      margin:auto;
+margin-bottom:10px;
 
-                                                                                                                                                                                                          padding:30px 20px;
+}
 
-                                                                                                                                                                                                          }
+.chapters-layout{
 
-                                                                                                                                                                                                          /*
-                                                                                                                                                                                                          Limita largura
-                                                                                                                                                                                                          */
+display:flex;
 
+gap:20px;
 
-                                                                                                                                                                                                          /* CARDS */
+max-width:1400px;
 
-                                                                                                                                                                                                          .card{
+margin:auto;
 
-                                                                                                                                                                                                              background:#0d1324;
+padding:20px;
 
-                                                                                                                                                                                                                  border:1px solid #1d2a4f;
+}
 
-                                                                                                                                                                                                                      border-radius:15px;
+.sidebar{
 
-                                                                                                                                                                                                                          padding:20px;
+width:280px;
 
-                                                                                                                                                                                                                              margin-bottom:20px;
+flex-shrink:0;
 
-                                                                                                                                                                                                                                  transition:.3s;
+background:#0d1324;
 
-                                                                                                                                                                                                                                  }
+border:1px solid #1d2a4f;
 
-                                                                                                                                                                                                                                  /*
-                                                                                                                                                                                                                                  Cartões do site
-                                                                                                                                                                                                                                  */
+border-radius:15px;
 
+padding:20px;
 
-                                                                                                                                                                                                                                  .card:hover{
+}
 
-                                                                                                                                                                                                                                      transform:translateY(-5px);
+.sidebar h2{
 
-                                                                                                                                                                                                                                          box-shadow:
-                                                                                                                                                                                                                                              0 0 20px rgba(59,130,246,.15);
+margin-bottom:15px;
 
-                                                                                                                                                                                                                                              }
+}
 
-                                                                                                                                                                                                                                              /*
-                                                                                                                                                                                                                                              Brilho leve
-                                                                                                                                                                                                                                              */
+.chapter-main{
 
+flex:1;
 
-                                                                                                                                                                                                                                              .card h2{
+}
 
-                                                                                                                                                                                                                                                  margin-bottom:10px;
+/* FOOTER */
 
-                                                                                                                                                                                                                                                  }
+footer{
 
+text-align:center;
 
-                                                                                                                                                                                                                                                  /* GRID */
+padding:30px;
 
-                                                                                                                                                                                                                                                  .grid{
+color:#94a3b8;
 
-                                                                                                                                                                                                                                                      display:grid;
+border-top:1px solid #1d2a4f;
 
-                                                                                                                                                                                                                                                          grid-template-columns:
-                                                                                                                                                                                                                                                              repeat(auto-fit,minmax(250px,1fr));
+margin-top:30px;
 
-                                                                                                                                                                                                                                                                  gap:20px;
+}
 
-                                                                                                                                                                                                                                                                  }
+/* RESPONSIVO */
 
-                                                                                                                                                                                                                                                                  /*
-                                                                                                                                                                                                                                                                  Responsivo automático
-                                                                                                                                                                                                                                                                  */
+@media(max-width:900px){
 
+.chapters-layout{
 
-                                                                                                                                                                                                                                                                  /* WIKI */
+    flex-direction:column;
 
-                                                                                                                                                                                                                                                                  .wiki-item{
+}
 
-                                                                                                                                                                                                                                                                      background:#0d1324;
+.sidebar{
 
-                                                                                                                                                                                                                                                                          border:1px solid #1d2a4f;
+    width:100%;
 
-                                                                                                                                                                                                                                                                              border-radius:15px;
+}
 
-                                                                                                                                                                                                                                                                                  padding:20px;
+}
 
-                                                                                                                                                                                                                                                                                      transition:.3s;
+@media(max-width:768px){
 
-                                                                                                                                                                                                                                                                                      }
+nav{
 
+    gap:12px;
 
-                                                                                                                                                                                                                                                                                      .wiki-item:hover{
+    font-size:.9rem;
 
-                                                                                                                                                                                                                                                                                          border-color:#3b82f6;
+}
 
-                                                                                                                                                                                                                                                                                              transform:translateY(-5px);
+.hero img{
 
-                                                                                                                                                                                                                                                                                              }
+    max-height:250px;
 
-                                                                                                                                                                                                                                                                                              /*
-                                                                                                                                                                                                                                                                                              Cards da wiki
-                                                                                                                                                                                                                                                                                              */
+}
 
-
-                                                                                                                                                                                                                                                                                              /* FOOTER */
-
-                                                                                                                                                                                                                                                                                              footer{
-
-                                                                                                                                                                                                                                                                                                  text-align:center;
-
-                                                                                                                                                                                                                                                                                                      padding:30px;
-
-                                                                                                                                                                                                                                                                                                          color:#94a3b8;
-
-                                                                                                                                                                                                                                                                                                              border-top:1px solid #1d2a4f;
-
-                                                                                                                                                                                                                                                                                                              }
-
-
-                                                                                                                                                                                                                                                                                                              /* RESPONSIVO */
-
-                                                                                                                                                                                                                                                                                                              @media(max-width:768px){
-
-                                                                                                                                                                                                                                                                                                              .hero-content h1{
-
-                                                                                                                                                                                                                                                                                                                  font-size:2rem;
-
-                                                                                                                                                                                                                                                                                                                  }
-
-                                                                                                                                                                                                                                                                                                                  .hero-content p{
-
-                                                                                                                                                                                                                                                                                                                      font-size:.9rem;
-
-                                                                                                                                                                                                                                                                                                                      }
-
-                                                                                                                                                                                                                                                                                                                      .hero-buttons{
-
-                                                                                                                                                                                                                                                                                                                          flex-direction:column;
-
-                                                                                                                                                                                                                                                                                                                          }
-
-                                                                                                                                                                                                                                                                                                                          }
+}
