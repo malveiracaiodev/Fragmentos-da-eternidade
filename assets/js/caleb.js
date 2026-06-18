@@ -1,19 +1,20 @@
-let desbloqueado = false;
-
 function desbloquear() {
-  if (desbloqueado) return;
 
-    document.getElementById("origem").innerText = "Fragmento Zero";
-      document.getElementById("status").innerText = "Ativo";
+      if (!Universe.state.characters.caleb.origin) {
 
-        document.getElementById("log1").innerText =
-            "Fragmento 01: Energia instável detectada";
+          Lore.unlockCalebOrigin();
 
-              document.getElementById("log2").innerText =
-                  "Fragmento 02: Memória parcial restaurada";
+              document.getElementById("origem").innerText = "Fragmento Zero";
+                  document.getElementById("status").innerText = "Ativo";
 
-                    document.querySelector(".aura").style.boxShadow =
-                        "0 0 120px rgba(0,170,255,0.9)";
+                      document.getElementById("log1").innerText =
+                            "Fragmento 01: Energia instável detectada";
 
-                          desbloqueado = true;
-                          }
+                                document.getElementById("log2").innerText =
+                                      "Fragmento 02: Memória parcial restaurada";
+
+                                          document.querySelector(".aura").style.boxShadow =
+                                                "0 0 120px rgba(0,170,255,0.9)";
+                                                  }
+                                                  }
+}
