@@ -16,3 +16,13 @@ const Lore = {
                         }
 
                         };
+                        // desbloqueavel //
+                        function unlockCharacter(id, name) {
+                            if (!Universe.state.characters[id]) return;
+
+                              Universe.state.characters[id].unlocked = true;
+                                Universe.state.characters[id].name = name;
+
+                                  Storage.save();
+                                  }
+                        

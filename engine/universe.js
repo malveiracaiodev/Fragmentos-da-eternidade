@@ -47,3 +47,20 @@ const Universe = {
 
                                                                                                                           // carregar automaticamente ao iniciar
                                                                                                                           Storage.load();
+                                                                                                                          Universe.state.characters = {
+                                                                                                                              caleb: {
+                                                                                                                                  unlocked: true,
+                                                                                                                                      name: "CALEB"
+                                                                                                                                        },
+
+                                                                                                                                          nyx: {
+                                                                                                                                              unlocked: false,
+                                                                                                                                                  name: "???"
+                                                                                                                                                    },
+
+                                                                                                                                                      orion: {
+                                                                                                                                                          unlocked: false,
+                                                                                                                                                              name: "???"
+                                                                                                                                                                }
+                                                                                                                                                                };
+                                                                                                                          
