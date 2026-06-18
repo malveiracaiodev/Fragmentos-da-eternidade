@@ -1,7 +1,7 @@
 /*
 ========================================
 FRAGMENTOS DA ETERNIDADE
-MAIN.JS - MARK I (ENGINE READY)
+MAIN.JS - ENGINE VIVO (MARK I)
 ========================================
 */
 
@@ -11,13 +11,14 @@ MAIN.JS - MARK I (ENGINE READY)
 console.log("Fragmentos da Eternidade iniciado");
 
 // ===============================
-// 🌌 VERIFICA CARREGAMENTO
+// 🌌 INIT
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Página carregada com sucesso");
 
   carregarUltimoCapitulo();
   inicializarEngine();
+  atualizarUIViva();
 });
 
 // ===============================
@@ -30,6 +31,40 @@ function inicializarEngine() {
   }
 
   console.log("Engine conectada ao universo");
+
+  // escuta eventos do universo
+  if (Universe.on) {
+    Universe.on("chapter_loaded", atualizarUIViva);
+  }
+}
+
+// ===============================
+// 🎨 UI VIVA (CORE DO SISTEMA)
+// ===============================
+function atualizarUIViva() {
+  if (!window.Universe) return;
+
+  const body = document.body;
+
+  // 🔵 estado Caleb desbloqueado
+  body.classList.toggle(
+    "caleb-unlocked",
+    Universe.state?.characters?.caleb?.unlocked
+  );
+
+  // 🔥 estado origem do Caleb
+  body.classList.toggle(
+    "caleb-origin",
+    Universe.state?.characters?.caleb?.origin
+  );
+
+  // 💎 fragmentos globais
+  body.classList.toggle(
+    "high-fragments",
+    (Universe.state?.lore?.globalFragments || 0) > 2
+  );
+
+  console.log("UI do universo atualizada");
 }
 
 // ===============================
@@ -61,10 +96,13 @@ async function carregarUltimoCapitulo() {
       </div>
     `;
 
-    // 🔥 DISPARA EVENTO NO UNIVERSO (FUTURO ENGINE)
-    if (window.Universe) {
-      Universe.trigger?.("chapter_loaded", ultimoCapitulo);
+    // 🔥 evento do universo
+    if (window.Universe?.trigger) {
+      Universe.trigger("chapter_loaded", ultimoCapitulo);
     }
+
+    // 🔥 atualiza UI depois do carregamento
+    atualizarUIViva();
 
   } catch (erro) {
     console.error("Erro ao carregar capítulos:", erro);
