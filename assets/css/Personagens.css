@@ -35,80 +35,60 @@ body {
   padding: 20px;
   border-left: 2px solid #00aaff;
   background: rgba(255,255,255,0.03);
+  border-radius: 10px;
   transition: 0.3s;
   cursor: pointer;
-  overflow: hidden;
-}
-
-/* EFEITO DE FUNDO (GLOW SUAVE) */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,170,255,0.12), transparent);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.card:hover::before {
-  opacity: 1;
 }
 
 /* HOVER */
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(0,170,255,0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0,170,255,0.2);
 }
 
 /* TITULO */
 .card h2 {
   color: #00aaff;
   margin-bottom: 10px;
-  letter-spacing: 2px;
 }
 
-/* TEXTO */
+/* DESCRIÇÃO */
 .card p {
   color: #cbd5e1;
+  font-size: 14px;
 }
 
 /* STATUS */
 .card span {
+  display: block;
+  margin-top: 10px;
   font-size: 12px;
-  color: #64748b;
+  color: #94a3b8;
 }
 
-/* BLOQUEADO */
+/* LOCKED */
 .locked {
-  opacity: 0.35;
-  filter: grayscale(1);
+  opacity: 0.4;
+  filter: blur(1px);
   pointer-events: none;
 }
 
-/* DESBLOQUEADO (ENGINE FUTURO) */
+/* UNLOCKED */
 .unlocked {
-  border-left: 2px solid #00aaff;
+  border-left: 2px solid #00ffcc;
 }
 
-/* MELHORIA DE CLIQUE */
-.card a {
-  color: inherit;
-  text-decoration: none;
-  display: block;
+/* EFEITO DE GLOW SIMPLES */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(0,170,255,0.15), transparent 60%);
+  opacity: 0;
+  transition: 0.3s;
+  border-radius: 10px;
 }
 
-/* RESPONSIVO */
-@media (max-width: 768px) {
-  .grid {
-    padding: 20px;
-    gap: 15px;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .top h1 {
-    font-size: 22px;
-  }
+.card:hover::before {
+  opacity: 1;
 }
