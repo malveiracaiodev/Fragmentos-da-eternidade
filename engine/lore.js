@@ -2,37 +2,37 @@
 // 📜 LORE SYSTEM (ENGINE CORE)
 // ===============================
 
-const Lore = {
+const lore = {
 
   // ===============================
   // 🔥 CALEB ORIGIN
   // ===============================
   unlockCalebOrigin() {
 
-    const caleb = Universe.state.characters?.caleb;
+    const caleb = universe.state.characters?.caleb;
 
     if (!caleb || caleb.origin) return;
 
     caleb.origin = true;
-    Universe.state.lore.globalFragments++;
+    universe.state.lore.globalFragments++;
 
     Storage.save();
 
     // 🔥 evento global padronizado
-    Universe.trigger?.("lore_event", {
+    universe.trigger?.("lore_event", {
       type: "caleb_origin_unlocked",
       character: "caleb",
       data: caleb
     });
 
-    Universe.trigger?.("caleb_origin_unlocked", caleb);
+    universe.trigger?.("caleb_origin_unlocked", caleb);
   },
 
   // ===============================
   // 👤 CHECK
   // ===============================
   isCalebOriginUnlocked() {
-    return !!Universe.state.characters?.caleb?.origin;
+    return !!universe.state.characters?.caleb?.origin;
   },
 
   // ===============================
@@ -40,7 +40,7 @@ const Lore = {
   // ===============================
   unlockCharacter(id, customName = null) {
 
-    const char = Universe.state.characters?.[id];
+    const char = universe.state.characters?.[id];
 
     if (!char || char.unlocked) return;
 
@@ -54,13 +54,13 @@ const Lore = {
     Storage.save();
 
     // 🔥 evento unificado
-    Universe.trigger?.("lore_event", {
+    universe.trigger?.("lore_event", {
       type: "character_unlocked",
       character: id,
       data: char
     });
 
-    Universe.trigger?.("character_unlocked", {
+    universe.trigger?.("character_unlocked", {
       id,
       char
     });
