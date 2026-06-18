@@ -1,28 +1,55 @@
 // ===============================
-// 📜 LORE SYSTEM
+// 📜 LORE SYSTEM (ENGINE CORE)
 // ===============================
 
 const Lore = {
 
+  // ===============================
+  // 🔥 CALIBRAÇÃO DO CALEB
+  // ===============================
   unlockCalebOrigin() {
-      Universe.state.characters.caleb.origin = true;
-          Universe.state.lore.globalFragments += 1;
 
-              Storage.save();
-                },
+    const caleb = Universe.state.characters.caleb;
 
-                  isCalebOriginUnlocked() {
-                      return Universe.state.characters.caleb.origin;
-                        }
+    if (!caleb || caleb.origin) return;
 
-                        };
-                        // desbloqueavel //
-                        function unlockCharacter(id, name) {
-                            if (!Universe.state.characters[id]) return;
+    caleb.origin = true;
+    Universe.state.lore.globalFragments++;
 
-                              Universe.state.characters[id].unlocked = true;
-                                Universe.state.characters[id].name = name;
+    Storage.save();
 
-                                  Storage.save();
-                                  }
-                        
+    // 🔥 EVENTO GLOBAL (para UI, 3D, etc)
+    Universe.trigger?.("caleb_origin_unlocked", caleb);
+  },
+
+  // ===============================
+  // 👤 CHECK CALEB
+  // ===============================
+  isCalebOriginUnlocked() {
+    return !!Universe.state.characters.caleb?.origin;
+  },
+
+  // ===============================
+  // 🧬 DESBLOQUEIO GENÉRICO
+  // ===============================
+  unlockCharacter(id, customName = null) {
+
+    const char = Universe.state.characters[id];
+
+    if (!char) return;
+
+    if (char.unlocked) return;
+
+    char.unlocked = true;
+
+    if (customName) {
+      char.name = customName;
+      char.nome = customName; // compatibilidade com seu JSON antigo
+    }
+
+    Storage.save();
+
+    // 🔥 evento global
+    Universe.trigger?.("character_unlocked", { id, char });
+  }
+};
