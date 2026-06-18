@@ -1,6 +1,6 @@
 /* =======================================
    CALEB - FRAGMENTOS DA ETERNIDADE
-   STYLE CSS
+   STYLE CSS (FIXED VERSION)
 ======================================= */
 
 body {
@@ -30,49 +30,45 @@ body {
   flex-direction: column;
 }
 
-/* CANVAS 3D */
-#canvas-container {
-  width: 340px;
-  height: 440px;
-  z-index: 2;
-}
-
-/* AURA DO CALEB */
+/* AURA */
 .aura {
   position: absolute;
-  width: 340px;
-  height: 340px;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
-  background: rgba(0, 170, 255, 0.12);
-  box-shadow:
-    0 0 60px rgba(0, 170, 255, 0.6),
-    0 0 120px rgba(0, 170, 255, 0.2);
+  background: radial-gradient(circle, rgba(0,170,255,0.35), transparent 70%);
+  filter: blur(25px);
   animation: pulse 2.5s infinite ease-in-out;
   z-index: 1;
 }
 
-/* PULSO DA AURA */
+/* ANIMAÇÃO DA AURA */
 @keyframes pulse {
-  0% {
+  0%, 100% {
     transform: scale(1);
-    opacity: 0.4;
+    opacity: 0.6;
   }
   50% {
     transform: scale(1.15);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
+    opacity: 1;
   }
 }
 
-/* SUBTÍTULO */
+/* CANVAS 3D */
+#canvas-container {
+  width: 340px;
+  height: 440px;
+  position: relative;
+  z-index: 2;
+}
+
+/* SUBTITLE */
 .subtitle {
   margin-top: 20px;
-  color: #94a3b8;
-  font-size: 13px;
-  letter-spacing: 1px;
+  opacity: 0.7;
+  font-size: 14px;
+  text-align: center;
+  z-index: 3;
 }
 
 /* =======================================
@@ -81,62 +77,52 @@ body {
 
 .right {
   flex: 1;
-  padding: 60px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* NOME CALEB */
 .name {
-  font-size: 52px;
-  color: #00aaff;
-  letter-spacing: 8px;
+  font-size: 48px;
+  letter-spacing: 4px;
   margin-bottom: 20px;
+  color: #00aaff;
 }
 
-/* CAIXA DE INFO */
+/* INFO BOX */
 .info-box {
-  margin-top: 20px;
-  padding: 15px;
-  border-left: 2px solid #00aaff;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,170,255,0.2);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
-/* TEXTOS */
 .info-box h3 {
   margin-bottom: 10px;
   color: #00aaff;
-  letter-spacing: 2px;
-}
-
-.info-box p {
-  margin: 5px 0;
-  color: #cbd5e1;
 }
 
 /* BOTÃO */
 button {
-  margin-top: 30px;
-  padding: 12px 20px;
   background: #00aaff;
+  color: black;
   border: none;
-  cursor: pointer;
+  padding: 12px;
   font-weight: bold;
-  color: #000;
+  cursor: pointer;
+  border-radius: 8px;
   transition: 0.3s;
-  letter-spacing: 1px;
 }
 
 button:hover {
-  background: #0088cc;
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 170, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0,170,255,0.4);
 }
 
 /* =======================================
-   RESPONSIVO (CELULAR)
+   RESPONSIVO
 ======================================= */
 
 @media (max-width: 900px) {
@@ -144,22 +130,16 @@ button:hover {
     flex-direction: column;
   }
 
+  .left {
+    height: 50vh;
+  }
+
   .right {
-    padding: 30px;
-    text-align: center;
+    padding: 20px;
   }
 
   .name {
     font-size: 36px;
-  }
-
-  #canvas-container {
-    width: 280px;
-    height: 360px;
-  }
-
-  .aura {
-    width: 280px;
-    height: 280px;
+    text-align: center;
   }
 }
