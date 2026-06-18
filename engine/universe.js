@@ -1,40 +1,110 @@
-// ===============================
-// 🌌 UNIVERSE ENGINE - CORE
+   // ===============================
+// 🌌 UNIVERSE ENGINE - CORE (v1.1)
 // ===============================
 
-// Estado global do universo
+// ===============================
+// 🌌 CORE STATE (DEFAULT)
+// ===============================
+const defaultState = {
+  characters: {
+    caleb: {
+      unlocked: true,
+      origin: false,
+      logs: 0,
+      name: "Caleb"
+    },
+
+    nyx: {
+      unlocked: false,
+      origin: false,
+      logs: 0,
+      name: "???"
+    },
+
+    orion: {
+      unlocked: false,
+      origin: false,
+      logs: 0,
+      name: "???"
+    }
+  },
+
+  lore: {
+    globalFragments: 0
+  }
+};
+
+// ===============================
+// 🌌 UNIVERSE ENGINE
+// ===============================
 const Universe = {
-  version: "1.0",
+  version: "1.1",
 
-    state: {
+  state: structuredClone(defaultState),
+
+  // ===============================
+  // 🔥 EVENT SYSTEM (BASE)
+  // ===============================
+  listeners: {},
+
+  on(event, callback) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(callback);
+  },
+
+  trigger(event, data) {
+    const list = this.listeners[event];
+    if (!list) return;
+
+    list.forEach(cb => cb(data));
+  }
+};
+
+// ===============================
+// 💾 STORAGE SYSTEM
+// ===============================
+const Storage = {
+  save() {
+    localStorage.setItem(
+      "fragmentos_universe",
+      JSON.stringify(Universe.state)
+    );
+  },
+
+  load() {
+    const data = localStorage.getItem("fragmentos_universe");
+
+    if (data) {
+      const parsed = JSON.parse(data);
+
+      // 🔥 merge seguro (não destrói estrutura nova)
+      Universe.state = {
+        ...structuredClone(defaultState),
+        ...parsed,
         characters: {
-              caleb: {
-                      unlocked: true,
-                              origin: false,
-                                      logs: 0
-                                            }
-                                                },
+          ...defaultState.characters,
+          ...(parsed.characters || {})
+        },
+        lore: {
+          ...defaultState.lore,
+          ...(parsed.lore || {})
+        }
+      };
+    }
+  },
 
-                                                    lore: {
-                                                          globalFragments: 0
-                                                              }
-                                                                }
-                                                                };
+  reset() {
+    localStorage.removeItem("fragmentos_universe");
+    location.reload();
+  }
+};
 
-                                                                // ===============================
-                                                                // 💾 STORAGE (salvar progresso)
-                                                                // ===============================
-                                                                const Storage = {
-                                                                  save() {
-                                                                      localStorage.setItem(
-                                                                            "fragmentos_universe",
-                                                                                  JSON.stringify(Universe.state)
-                                                                                      );
-                                                                                        },
-
-                                                                                          load() {
-                                                                                              const data = localStorage.getItem("fragmentos_universe");
-                                                                                                  if (data) {
+// ===============================
+// 🚀 INIT
+// ===============================
+Storage.load();                                                                                               if (data) {
                                                                                                         Universe.state = JSON.parse(data);
                                                                                                             }
                                                                                                               },
