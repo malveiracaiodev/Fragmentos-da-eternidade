@@ -1,8 +1,8 @@
 function desbloquear() {
 
-  if (!window.Universe || !window.Lore) return;
+  if (!window.universe || !window.lore) return;
 
-  if (Universe.state.characters.caleb.origin) return;
+  if (universe.state.characters.caleb.origin) return;
 
   // ===============================
   // 🔥 ATUALIZA LORE
