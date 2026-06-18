@@ -32,9 +32,9 @@ function createCard(id, data) {
 function render() {
 
   if (!grid) return;
-  if (!window.Universe) return;
+  if (!window.universe) return;
 
-  const chars = Universe.state.characters;
+  const chars = universe.state.characters;
 
   grid.innerHTML = "";
 
@@ -49,10 +49,10 @@ function render() {
 // 🔥 UI REATIVA (IMPORTANTE)
 // ===============================
 function attachUniverseListener() {
-  if (!window.Universe?.on) return;
+  if (!window.universe?.on) return;
 
-  Universe.on("character_updated", render);
-  Universe.on("chapter_loaded", render);
+  universe.on("character_updated", render);
+  universe.on("chapter_loaded", render);
 }
 
 // ===============================
