@@ -1,123 +1,74 @@
 /*
 ========================================
 FRAGMENTOS DA ETERNIDADE
-MAIN.JS - ENGINE ESTÁVEL (FIXED)
+MAIN.JS - BOOT SEGURO (FIXED)
 ========================================
 */
 
-console.log("Fragmentos da Eternidade iniciado");
+console.log("🌌 Fragmentos da Eternidade - main.js carregado");
 
 // ===============================
-// BOOT
+// 🚀 BOOT SEGURO DO SISTEMA
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Página carregada");
 
-  carregarUltimoCapitulo();
-  inicializarEngine();
+  console.log("📦 DOM carregado - iniciando boot do universo");
 
-  // UI inicial mesmo sem engine
-  atualizarUIViva();
+  // ===============================
+  // 💾 1. LOAD DO UNIVERSO (SAVE FIRST)
+  // ===============================
+  if (typeof storage !== "undefined" && typeof storage.load === "function") {
+    try {
+      storage.load();
+      console.log("💾 Save carregado com sucesso");
+    } catch (e) {
+      console.warn("⚠️ Erro ao carregar save:", e);
+    }
+  }
+
+  // ===============================
+  // 🌌 2. INIT DO ENGINE
+  // ===============================
+  if (typeof universe !== "undefined" && typeof universe.init === "function") {
+    try {
+      universe.init();
+      console.log("🌌 Universe inicializado");
+    } catch (e) {
+      console.warn("⚠️ Erro ao inicializar universe:", e);
+    }
+  }
+
+  // ===============================
+  // 📜 3. INICIALIZAÇÃO DO LORE / SISTEMA
+  // ===============================
+  if (typeof lore !== "undefined") {
+    console.log("📜 Sistema de lore detectado");
+  }
+
+  // ===============================
+  // 🧠 4. UI / HISTÓRIA
+  // ===============================
+  if (typeof carregarUltimoCapitulo === "function") {
+    try {
+      carregarUltimoCapitulo();
+      console.log("📖 Último capítulo carregado");
+    } catch (e) {
+      console.warn("⚠️ Erro ao carregar capítulo:", e);
+    }
+  }
+
+  if (typeof inicializarEngine === "function") {
+    try {
+      inicializarEngine();
+      console.log("⚙️ Engine UI inicializada");
+    } catch (e) {
+      console.warn("⚠️ Erro ao inicializar engine UI:", e);
+    }
+  }
+
+  // ===============================
+  // 🔥 EVENTO FINAL
+  // ===============================
+  console.log("✨ Boot completo - universo ativo");
+
 });
-
-// ===============================
-// ENGINE INIT SEGURA
-// ===============================
-function inicializarEngine() {
-  const engine = window.universe || window.Universe;
-
-  if (!engine) {
-    console.warn("Engine não encontrada (modo offline)");
-    return;
-  }
-
-  console.log("Engine conectada");
-
-  try {
-    if (engine.on) {
-      engine.on("chapter_loaded", atualizarUIViva);
-    }
-  } catch (e) {
-    console.warn("Erro ao conectar eventos da engine:", e);
-  }
-}
-
-// ===============================
-// UI VIVA SEGURA
-// ===============================
-function atualizarUIViva() {
-  const body = document.body;
-
-  const engine = window.universe || window.Universe;
-
-  const calebUnlocked =
-    engine?.state?.characters?.caleb?.unlocked === true;
-
-  const calebOrigin =
-    engine?.state?.characters?.caleb?.origin === true;
-
-  const highFragments =
-    (engine?.state?.lore?.globalFragments || 0) > 2;
-
-  body.classList.toggle("caleb-unlocked", calebUnlocked);
-  body.classList.toggle("caleb-origin", calebOrigin);
-  body.classList.toggle("high-fragments", highFragments);
-
-  console.log("UI atualizada", {
-    calebUnlocked,
-    calebOrigin,
-    highFragments
-  });
-}
-
-// ===============================
-// CAPÍTULO (SEGURADO)
-// ===============================
-async function carregarUltimoCapitulo() {
-  try {
-    const resposta = await fetch("data/capitulos.json");
-
-    if (!resposta.ok) {
-      console.warn("capitulos.json não encontrado");
-      return;
-    }
-
-    const capitulos = await resposta.json();
-
-    if (!Array.isArray(capitulos) || capitulos.length === 0) {
-      console.warn("Sem capítulos disponíveis");
-      return;
-    }
-
-    const ultimo = capitulos[capitulos.length - 1];
-
-    const container = document.getElementById("ultimo-capitulo");
-
-    if (!container) return;
-
-    container.innerHTML = `
-      <div class="card">
-
-        <h2>📖 ${ultimo.titulo || "Sem título"}</h2>
-
-        <p>${ultimo.descricao || ""}</p>
-
-        <a href="capitulos/${ultimo.arquivo || "#"}" class="btn">
-          Ler Capítulo
-        </a>
-
-      </div>
-    `;
-
-    const engine = window.universe || window.Universe;
-
-    if (engine?.trigger) {
-      engine.trigger("chapter_loaded", ultimo);
-    }
-
-    atualizarUIViva();
-
-  } catch (erro) {
-    console.error("Erro ao carregar capítulos:", erro);
-  }
-}
