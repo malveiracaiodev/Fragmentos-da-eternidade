@@ -1,6 +1,6 @@
 /* =======================================
    CALEB - FRAGMENTOS DA ETERNIDADE
-   STYLE CSS (FIXED VERSION)
+   STYLE CSS (STABLE VERSION)
 ======================================= */
 
 body {
@@ -8,7 +8,7 @@ body {
   font-family: Arial, sans-serif;
   background: radial-gradient(circle at center, #050816, #000);
   color: white;
-  overflow: hidden;
+  overflow-x: hidden; /* ❗ mantém segurança sem quebrar scroll futuro */
 }
 
 /* CONTAINER PRINCIPAL */
@@ -42,7 +42,7 @@ body {
   z-index: 1;
 }
 
-/* ANIMAÇÃO DA AURA */
+/* ANIMAÇÃO */
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
@@ -59,7 +59,7 @@ body {
   width: 340px;
   height: 440px;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* garante que sempre fique acima do fundo */
 }
 
 /* SUBTITLE */
@@ -104,8 +104,11 @@ body {
   color: #00aaff;
 }
 
-/* BOTÃO */
-button {
+/* =======================================
+   BOTÃO (escopo seguro)
+======================================= */
+
+#unlockBtn {
   background: #00aaff;
   color: black;
   border: none;
@@ -116,7 +119,7 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+#unlockBtn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(0,170,255,0.4);
 }
