@@ -1,8 +1,4 @@
 // ===============================
-// 🌌 UNIVERSE ENGINE - CORE (v1.2 FIXED)
-// ===============================
-
-// ===============================
 // 🌌 DEFAULT STATE
 // ===============================
 const defaultState = {
@@ -107,6 +103,12 @@ const storage = {
     location.reload();
   }
 };
+
+// ===============================
+// 🌐 GLOBAL EXPORT (CRÍTICO)
+// ===============================
+window.universe = universe;
+window.storage = storage;
 
 // ===============================
 // 🚀 INIT BOOT SEQUENCE
