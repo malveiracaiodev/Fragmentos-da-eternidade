@@ -1,156 +1,346 @@
-/* ===============================
-   RESET
-=============================== */
+/* CONFIGURAÇÕES GERAIS */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  font-family: system-ui, Arial, sans-serif;
-
-  background: #05070d;
-  color: white;
-
-  overflow-x: hidden;
+body {
+    background-color: #030712; /* Fundo super escuro igual ao da imagem */
+    color: #e5e7eb;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* ===============================
-   FUNDO UNIVERSO (CORRIGIDO)
-=============================== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background:
-    radial-gradient(circle at top, rgba(11,15,26,0.9), rgba(5,7,13,1)),
-    radial-gradient(circle at bottom, rgba(0,170,255,0.08), transparent 60%);
-
-  z-index: 0;
-  pointer-events: none;
+h1, h2, h3, .main-nav a {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
 }
 
-/* garante que tudo fique acima do fundo */
-body > * {
-  position: relative;
-  z-index: 1;
+.container {
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* ===============================
-   HERO
-=============================== */
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+/* HEADER COM OS CRISTAIS (BANNER) */
+.main-header {
+    background: linear-gradient(to bottom, rgba(3, 7, 18, 0.3), #030712), 
+                url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center; /* Substitua depois pelo seu banner com os cristais azul e dourado */
+    background-size: cover;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.hero img {
-  max-width: 100%;
-  height: auto;
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #f3f4f6;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* ===============================
-   NAV
-=============================== */
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.sub-title-da {
+    font-size: 1.8rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+    opacity: 0.8;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-
-  padding: 6px 10px;
-  border-radius: 8px;
-
-  transition: 0.2s;
+.header-tagline {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    margin-top: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-nav a:hover {
-  background: rgba(120, 120, 255, 0.15);
+/* MENU DE NAVEGAÇÃO */
+.main-nav {
+    background-color: #060b18;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* ===============================
-   MAIN
-=============================== */
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
 }
 
-/* ===============================
-   CARDS
-=============================== */
+.main-nav a {
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: #fbbf24; /* Dourado ao passar o mouse */
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.main-nav a.active {
+    border-bottom: 2px solid #fbbf24;
+}
+
+/* ESTRUTURA DOS CARDS (HUD ESTILO RPG) */
 .card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-
-  padding: 16px;
-  border-radius: 12px;
-
-  margin-bottom: 12px;
+    background-color: rgba(6, 11, 24, 0.6);
+    border: 1px solid #1e293b;
+    border-radius: 4px;
+    padding: 6px; /* Espaço para a borda dupla */
+    margin-bottom: 30px;
 }
 
-/* ===============================
-   GRID WIKI
-=============================== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
+.card-inner-border {
+    border: 1px solid rgba(30, 41, 59, 0.7);
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.wiki-item {
-  display: block;
-
-  background: rgba(255,255,255,0.04);
-  padding: 12px;
-
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-
-  text-decoration: none;
-  color: white;
-
-  transition: 0.2s;
+.card h2 {
+    font-size: 1.2rem;
+    color: #f3f4f6;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 10px;
 }
 
-.wiki-item:hover {
-  background: rgba(120,120,255,0.1);
-  transform: translateY(-2px);
+/* LAYOUT EM GRID (3 COLUNAS) */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr 1.2fr;
+    gap: 20px;
+    margin-top: 40px;
 }
 
-/* ===============================
-   FOOTER
-=============================== */
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.6;
-  font-size: 0.85rem;
+/* COLUNA 1 - BOTÕES */
+.col-jornada p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
 }
 
-/* ===============================
-   MOBILE
-=============================== */
-@media (max-width: 768px) {
-  nav a {
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.btn-blue {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(29, 78, 216, 0.4);
+}
+
+.btn-blue:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+}
+
+.btn-outline {
+    border: 1px solid #1e293b;
+    color: #fbbf24;
+    background-color: rgba(3, 7, 18, 0.5);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* COLUNA 2 - DESTAQUE CENTRAL (CAPÍTULO) */
+.col-destaque {
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+}
+
+.badge {
+    background-color: #78350f;
+    color: #fcd34d;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    font-weight: bold;
+    align-self: flex-start;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.cap-title {
+    font-size: 2.2rem !important;
+    border: none !important;
+    padding: 0 !important;
+    line-height: 1.2;
+}
+
+.cap-subtitle {
+    font-size: 1.5rem;
+    color: #9ca3af;
+}
+
+.col-destaque p {
+    color: #d1d5db;
+    max-width: 80%;
+    margin-bottom: 30px;
+}
+
+.destaque-links {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.btn-read {
+    background-color: rgba(6, 11, 24, 0.8);
+    border: 1px solid #1d4ed8;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-read:hover {
+    background-color: #1d4ed8;
+}
+
+.link-more {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link-more:hover {
+    text-decoration: underline;
+}
+
+/* COLUNA 3 - LISTA EXPLORAR */
+.explore-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.explore-list li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: rgba(3, 7, 18, 0.4);
+    border: 1px solid rgba(30, 41, 59, 0.5);
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.explore-list li a:hover {
+    background-color: rgba(30, 41, 59, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+/* Cores dos pequenos ícones circulares */
+.circle-blue   { background-color: rgba(29, 78, 216, 0.2); color: #3b82f6; }
+.circle-gold   { background-color: rgba(217, 119, 6, 0.2); color: #fbbf24; }
+.circle-purple { background-color: rgba(109, 40, 217, 0.2); color: #a78bfa; }
+.circle-green  { background-color: rgba(4, 120, 87, 0.2); color: #34d399; }
+.circle-orange { background-color: rgba(194, 65, 12, 0.2); color: #fb923c; }
+.circle-gray   { background-color: rgba(75, 85, 99, 0.2); color: #9ca3af; }
+
+.list-text strong {
+    color: #e5e7eb;
+    font-size: 0.85rem;
+    display: block;
+}
+
+.list-text p {
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.arrow {
+    margin-left: auto;
+    color: #4b5563;
     font-size: 0.8rem;
-  }
+}
+
+/* SOBRE A OBRA & FOOTER */
+.about-section {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.about-section p {
+    color: #9ca3af;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+}
+
+.btn-saiba-mais {
+    display: inline-block;
+    border: 1px solid #1d4ed8;
+    color: #fff;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin: 0 auto;
+    transition: 0.3s;
+}
+
+.btn-saiba-mais:hover {
+    background-color: #1d4ed8;
+}
+
+.main-footer {
+    text-align: center;
+    padding: 30px;
+    color: #4b5563;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* RESPONSIVIDADE (PARA CELULAR) */
+@media (max-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr; /* Vira uma coluna só no celular */
+    }
+    .col-destaque p {
+        max-width: 100%;
+    }
 }
