@@ -7,10 +7,10 @@
 
   <title>Caleb | Fragmentos da Eternidade</title>
 
-  <!-- 🌌 CSS GLOBAL (não quebra o universo) -->
+  <!-- 🌌 CSS GLOBAL -->
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <!-- opcional: extras do Caleb -->
+  <!-- 🎭 CSS ESPECÍFICO DO CALEB -->
   <link rel="stylesheet" href="caleb.css">
 </head>
 
@@ -23,6 +23,7 @@
 
     <div class="aura"></div>
 
+    <!-- 🎥 CANVAS 3D -->
     <div id="canvas-container"></div>
 
     <p class="subtitle">
@@ -56,16 +57,18 @@
 </div>
 
 <!-- =============================== -->
-<!-- SCRIPTS (ORDEM SEGURA) -->
+<!-- SCRIPTS (ORDEM CORRETA) -->
 <!-- =============================== -->
 
+<!-- 🌌 ENGINE GLOBAL -->
 <script src="../engine/universe.js"></script>
 <script src="../engine/lore.js"></script>
 
+<!-- 🎥 THREE.JS -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
-<script src="../assets/js/caleb.js"></script>
-<script src="../assets/js/caleb3d.js"></script>
+<!-- 🧠 CALEB UNIFICADO (NOVO SISTEMA) -->
+<script src="caleb.engine.js"></script>
 
 </body>
 
