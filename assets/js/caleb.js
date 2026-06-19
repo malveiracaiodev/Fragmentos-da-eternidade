@@ -2,22 +2,26 @@ function desbloquear() {
 
   if (!window.universe || !window.lore) return;
 
-  if (universe.state.characters.caleb.origin) return;
+  const caleb = universe.state.characters?.caleb;
+
+  if (!caleb) return;
+
+  if (caleb.lore?.origin) return;
 
   // ===============================
   // 🔥 ATUALIZA LORE
   // ===============================
-  Lore.unlockCalebOrigin();
+  lore.unlockCalebOrigin();
 
   // ===============================
   // 💾 SALVA ESTADO
   // ===============================
-  Storage?.save?.();
+  storage?.save?.();
 
   // ===============================
-  // 🧠 DISPARA EVENTO GLOBAL
+  // 🧠 EVENTO GLOBAL
   // ===============================
-  Universe.trigger?.("caleb_origin_unlocked");
+  universe.trigger?.("caleb_origin_unlocked", caleb);
 
   // ===============================
   // 🎨 UI LOCAL
@@ -38,19 +42,23 @@ function desbloquear() {
     "Fragmento 02: Memória parcial restaurada";
 
   // ===============================
-  // 🌌 EFEITO VISUAL EVOLUÍDO
+  // 🌌 EFEITO VISUAL
   // ===============================
   if (aura) {
     aura.style.boxShadow =
       "0 0 120px rgba(0,170,255,0.9)";
   }
 
-  // ===============================
-  // 🔥 ATUALIZA UI GLOBAL
-  // ===============================
-  if (typeof atualizarUIViva === "function") {
-    atualizarUIViva();
-  }
-
   console.log("CALEB ORIGIN DESBLOQUEADO");
 }
+
+// ===============================
+// 🔘 BOTÃO
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("unlockBtn");
+
+  if (btn) {
+    btn.addEventListener("click", desbloquear);
+  }
+});
