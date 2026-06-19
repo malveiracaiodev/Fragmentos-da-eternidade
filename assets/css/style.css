@@ -1,258 +1,152 @@
-/* =======================================
-   FRAGMENTOS DA ETERNIDADE
-   CSS BASE DEFINITIVO
-======================================= */
+/* ===============================
+   🌌 FRAGMENTOS DA ETERNIDADE
+   STYLE.CSS - NEW CORE
+   =============================== */
 
+/* ===============================
+   RESET BASE
+=============================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: white;
+  overflow-x: hidden;
+  background: #05070d;
 }
 
-body {
-    background: #050505;
-    color: #f5f5f5;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    transition: background 0.8s ease, color 0.5s ease;
+/* ===============================
+   🌌 FUNDO DO UNIVERSO (FIXO)
+=============================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120, 80, 255, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0, 200, 255, 0.10), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255, 0, 120, 0.08), transparent 50%),
+    radial-gradient(circle at top, #0b0f1a, #05070d);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* =======================================
-   HEADER
-======================================= */
-
-header {
-    width: 100%;
+/* leve “noise” cinematográfico */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("assets/noise.png");
+  opacity: 0.04;
+  z-index: -1;
+  pointer-events: none;
 }
 
+/* ===============================
+   HERO PRINCIPAL
+=============================== */
 .hero {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+
+  background: transparent;
 }
 
-.hero img {
-    width: 100%;
-    display: block;
-    transition: 0.5s;
+.hero h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* =======================================
-   NAVEGAÇÃO
-======================================= */
-
-nav {
-    background: #0d0d0d;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+.hero p {
+  margin-top: 10px;
+  opacity: 0.7;
+  font-size: 1rem;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav li {
-    margin: 0.5rem;
-}
-
-nav a {
-    color: #e5e5e5;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #00aaff;
-}
-
-/* =======================================
-   CONTEÚDO
-======================================= */
-
+/* ===============================
+   CONTEÚDO PRINCIPAL
+=============================== */
 main {
-    max-width: 1200px;
-    margin: auto;
-    padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-section {
-    margin-bottom: 2rem;
-}
-
-h1, h2, h3 {
-    margin-bottom: 1rem;
-}
-
-p {
-    margin-bottom: 1rem;
-}
-
-/* =======================================
-   CARDS
-======================================= */
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
+/* ===============================
+   CARD GENÉRICO (LORE / PERSONAGENS)
+=============================== */
 .card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 20px;
-    transition: 0.3s;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(8px);
+  transition: 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0,170,255,0.5);
+  transform: translateY(-2px);
+  border-color: rgba(120, 120, 255, 0.3);
 }
 
-.card h3 {
-    color: #00aaff;
+/* ===============================
+   BOTÕES
+=============================== */
+button {
+  background: rgba(120, 120, 255, 0.15);
+  border: 1px solid rgba(120, 120, 255, 0.3);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-/* =======================================
-   PERSONAGENS
-======================================= */
-
-.character-page {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    flex-wrap: wrap;
+button:hover {
+  background: rgba(120, 120, 255, 0.25);
 }
 
-.character-model {
-    flex: 1;
-    min-width: 300px;
+/* ===============================
+   TEXTO DE LORE / DESBLOQUEIO
+=============================== */
+.lore-unlocked {
+  color: #8efcff;
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
 }
 
-.character-info {
-    flex: 1;
-    min-width: 300px;
+.hidden {
+  opacity: 0.3;
+  filter: blur(1px);
 }
 
-.name {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-/* =======================================
-   WIKI
-======================================= */
-
-.wiki-item {
-    background: rgba(255,255,255,0.03);
-    border-left: 4px solid #00aaff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-/* =======================================
-   FOOTER
-======================================= */
-
-footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid #222;
-    margin-top: 3rem;
-    color: #888;
-}
-
-/* =======================================
-   ENGINE - DESBLOQUEIOS
-======================================= */
-
-body.caleb-unlocked {
-    background: radial-gradient(circle at top, #06102a, #000);
-}
-
-body.caleb-unlocked .hero img {
-    filter: brightness(1.1) contrast(1.1);
-}
-
-body.caleb-origin {
-    background: radial-gradient(circle at top, #001a2f, #000);
-}
-
-body.caleb-origin .card,
-body.caleb-origin .wiki-item {
-    border-color: rgba(0,170,255,0.6);
-    box-shadow: 0 0 25px rgba(0,170,255,0.2);
-}
-
-body.caleb-origin .name {
-    text-shadow: 0 0 20px rgba(0,170,255,0.8);
-}
-
-body.high-fragments {
-    background: radial-gradient(circle at top, #120018, #000);
-}
-
-body.high-fragments .hero img {
-    filter: hue-rotate(30deg) brightness(1.2);
-}
-
-body.high-fragments .card {
-    border-color: rgba(255,0,200,0.3);
-}
-
-/* =======================================
-   UNIVERSO RESPIRANDO
-======================================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(
-        circle,
-        rgba(0,170,255,0.05),
-        transparent 60%
-    );
-    pointer-events: none;
-    animation: universePulse 6s infinite ease-in-out;
-    z-index: -1;
-}
-
-@keyframes universePulse {
-    0%,100% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 0.9;
-    }
-}
-
-/* =======================================
-   MOBILE
-======================================= */
-
+/* ===============================
+   RESPONSIVO MOBILE
+=============================== */
 @media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
 
-    .character-page {
-        flex-direction: column;
-    }
+  main {
+    padding: 14px;
+  }
 
-    .name {
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 1rem;
-    }
+  .card {
+    padding: 12px;
+  }
 }
