@@ -1,3 +1,7 @@
+/* ===============================
+   🌌 PERSONAGENS - FRAGMENTOS DA ETERNIDADE
+   =============================== */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -5,23 +9,31 @@ body {
   color: white;
 }
 
-/* TOPO */
-.top {
+/* ===============================
+   🔷 TOPO / HEADER
+   =============================== */
+
+.topbar {
   text-align: center;
   padding: 40px 20px;
 }
 
-.top h1 {
+.topbar h1 {
   color: #00aaff;
   letter-spacing: 6px;
   font-size: 28px;
+  margin: 0;
 }
 
-.top p {
+.topbar p {
   color: #94a3b8;
+  margin-top: 8px;
 }
 
-/* GRID */
+/* ===============================
+   🌌 CONTAINER GRID
+   =============================== */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -29,36 +41,42 @@ body {
   padding: 40px;
 }
 
-/* CARD BASE */
+/* ===============================
+   👤 CARD BASE
+   =============================== */
+
 .card {
   position: relative;
   padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
   border-left: 2px solid #00aaff;
-  background: rgba(255,255,255,0.03);
-  border-radius: 10px;
-  transition: 0.3s;
+  transition: 0.3s ease;
   cursor: pointer;
+  overflow: hidden;
 }
 
-/* HOVER */
+/* hover suave */
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0,170,255,0.2);
+  box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
 }
 
-/* TITULO */
+/* título */
 .card h2 {
+  margin: 0 0 10px 0;
   color: #00aaff;
-  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-/* DESCRIÇÃO */
+/* texto */
 .card p {
+  margin: 4px 0;
   color: #cbd5e1;
   font-size: 14px;
 }
 
-/* STATUS */
+/* status */
 .card span {
   display: block;
   margin-top: 10px;
@@ -66,29 +84,59 @@ body {
   color: #94a3b8;
 }
 
-/* LOCKED */
+/* ===============================
+   🔒 BLOQUEADO
+   =============================== */
+
 .locked {
-  opacity: 0.4;
+  opacity: 0.35;
   filter: blur(1px);
   pointer-events: none;
+  border-left: 2px solid #334155;
 }
 
-/* UNLOCKED */
+/* ===============================
+   🔓 DESBLOQUEADO
+   =============================== */
+
 .unlocked {
   border-left: 2px solid #00ffcc;
 }
 
-/* EFEITO DE GLOW SIMPLES */
+/* ===============================
+   ✨ GLOW EFFECT
+   =============================== */
+
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(0,170,255,0.15), transparent 60%);
+  background: radial-gradient(
+    circle at top,
+    rgba(0, 170, 255, 0.15),
+    transparent 60%
+  );
   opacity: 0;
-  transition: 0.3s;
-  border-radius: 10px;
+  transition: 0.3s ease;
+  border-radius: 12px;
 }
 
 .card:hover::before {
   opacity: 1;
+}
+
+/* ===============================
+   📱 RESPONSIVO
+   =============================== */
+
+@media (max-width: 600px) {
+  .grid {
+    padding: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .topbar h1 {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
 }
