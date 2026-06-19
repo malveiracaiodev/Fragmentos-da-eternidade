@@ -91,4 +91,25 @@ let mouseY = 0;
 
 document.addEventListener("mousemove", (event) => {
   mouseX = (event.clientX / window.innerWidth) - 0.5;
-  mouseY = (event.clientY / window.innerHeight) -
+  mouseY = (event.clientY / window.innerHeight) - 0.5;
+});
+
+// ===============================
+// 🔥 ANIMATION LOOP
+// ===============================
+function animate() {
+  requestAnimationFrame(animate);
+
+  caleb.rotation.y += 0.01;
+
+  particles.rotation.y += 0.002;
+
+  camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+  camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+
+  camera.lookAt(scene.position);
+
+  renderer.render(scene, camera);
+}
+
+animate();
