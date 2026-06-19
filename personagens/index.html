@@ -1,98 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Personagens - Fragmentos da Eternidade</title>
+                <link rel="stylesheet" href="../assets/css/style.css">
+                    <link rel="stylesheet" href="../assets/css/personagens.css">
+                        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                            </head>
+                            <body>
 
-  <title>Wiki | Fragmentos da Eternidade</title>
+                                <header class="main-header">
+                                        <h1 class="main-title">PERSONAGENS</h1>
+                                                <p class="header-tagline">POVOS, LENDAS E PORTADORES DA ETERNIDADE</p>
+                                                    </header>
 
-  <link rel="stylesheet" href="../assets/css/style.css">
+                                                        <nav class="main-nav">
+                                                                <ul>
+                                                                            <li><a href="../index.html"><i class="fa-solid fa-house"></i> INÍCIO</a></li>
+                                                                                        <li><a href="#" class="active"><i class="fa-solid fa-user"></i> PERSONAGENS</a></li>
+                                                                                                    </ul>
+                                                                                                        </nav>
 
-  <style>
-    .wiki-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
+                                                                                                            <main class="container character-grid">
+                                                                                                                    <div class="card char-card unlocked">
+                                                                                                                                <div class="card-inner-border">
+                                                                                                                                                <div class="char-image-container">
+                                                                                                                                                                    <img src="../assets/images/caleb-thumb.png" alt="Caleb" class="char-img">
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <h2>CALEB</h2>
+                                                                                                                                                                                                                    <span class="char-title">O Portador Inicial</span>
+                                                                                                                                                                                                                                    <p>Um dos irmãos gêmeos marcados pelo destino. Guarda em si um fragmento cujo verdadeiro poder ainda desconhece.</p>
+                                                                                                                                                                                                                                                    <a href="caleb.html" class="btn btn-blue">VER FICHA COMPLETA</a>
+                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                        </div>
 
-    .wiki-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(0,170,255,0.2);
-      padding: 20px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+                                                                                                                                                                                                                                                                                <div class="card char-card locked">
+                                                                                                                                                                                                                                                                                            <div class="card-inner-border">
+                                                                                                                                                                                                                                                                                                            <div class="char-image-container">
+                                                                                                                                                                                                                                                                                                                                <i class="fa-solid fa-lock lock-icon"></i>
+                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                <h2>???</h2>
+                                                                                                                                                                                                                                                                                                                                                                                <span class="char-title">BLOQUEADO</span>
+                                                                                                                                                                                                                                                                                                                                                                                                <p>Continue lendo a história para desbloquear a identidade e a lore deste personagem.</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                <button class="btn btn-outline" disabled>BLOQUEADO</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </main>
 
-    .wiki-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(0,170,255,0.2);
-    }
-
-    .wiki-card h3 {
-      color: #00aaff;
-      margin: 0 0 10px;
-    }
-
-    .locked {
-      opacity: 0.4;
-    }
-  </style>
-</head>
-
-<body>
-
-<header class="wiki-header">
-
-  <div class="wiki-title">
-    <h1>FRAGMENTOS DA ETERNIDADE</h1>
-    <h2>PERSONAGENS</h2>
-  </div>
-
-</header>
-
-<nav>
-  <a href="../index.html">Voltar</a>
-</nav>
-
-<main class="container">
-
-  <section class="card">
-    <h2>📖 Enciclopédia Viva</h2>
-    <p>Personagens do universo e seus fragmentos.</p>
-  </section>
-
-  <!-- 🔥 WIKI GRID FIXA -->
-  <div class="wiki-grid">
-
-    <!-- CALEB SEMPRE VISÍVEL -->
-    <a href="caleb.html" class="wiki-card">
-      <h3>👤 Caleb</h3>
-      <p>Entidade principal do universo</p>
-    </a>
-
-    <!-- KYLO EXEMPLO FUTURO -->
-    <div class="wiki-card locked">
-      <h3>❓ Kylo</h3>
-      <p>Bloqueado</p>
-    </div>
-
-    <!-- ORION -->
-    <div class="wiki-card locked">
-      <h3>❓ Orion</h3>
-      <p>Bloqueado</p>
-    </div>
-
-  </div>
-
-</main>
-
-<footer>
-  <p>Universo em expansão</p>
-</footer>
-
-</body>
-
-</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        
