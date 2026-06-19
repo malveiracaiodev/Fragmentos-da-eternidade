@@ -7,194 +7,242 @@ let caleb, material, particles, light;
 
 const CalebState = {
   level: 0 // 0 = dormindo, 1 = ativo, 2 = despertando, 3 = evoluído
-};
+  };
 
-// =======================================
-// 🚀 INIT
-// =======================================
-function initCaleb() {
+  // ID do segredo atrelado ao Caleb neste momento da história
+  const SEGREDO_ID = "passado_caleb";
 
-  const container = document.getElementById("canvas-container");
+  // =======================================
+  // 🚀 INIT
+  // =======================================
+  function initCaleb() {
 
-  if (!container) {
-    console.warn("Canvas container não encontrado");
-    return;
-  }
+    // Ajustado para bater com a id do seu HTML anterior (ou "canvas-container")
+      const container = document.getElementById("canvas-3d") || document.getElementById("canvas-container");
 
-  // ===============================
-  // 🌌 SCENE
-  // ===============================
-  scene = new THREE.Scene();
+        if (!container) {
+            console.warn("Canvas container não encontrado");
+                return;
+                  }
 
-  camera = new THREE.PerspectiveCamera(
-    75,
-    320 / 420,
-    0.1,
-    1000
-  );
+                    // ===============================
+                      // 🌌 SCENE
+                        // ===============================
+                          scene = new THREE.Scene();
 
-  camera.position.z = 3;
+                            camera = new THREE.PerspectiveCamera(
+                                75,
+                                    container.clientWidth / container.clientHeight, // Ajustado para ser responsivo ao tamanho da div
+                                        0.1,
+                                            1000
+                                              );
 
-  renderer = new THREE.WebGLRenderer({
-    alpha: true,
-    antialias: true
-  });
+                                                camera.position.z = 3;
 
-  renderer.setSize(320, 420);
-  container.appendChild(renderer.domElement);
+                                                  renderer = new THREE.WebGLRenderer({
+                                                      alpha: true,
+                                                          antialias: true
+                                                            });
 
-  // ===============================
-  // 💡 LIGHTS
-  // ===============================
-  light = new THREE.PointLight(0x00aaff, 1.5);
-  light.position.set(2, 2, 2);
-  scene.add(light);
+                                                              renderer.setSize(container.clientWidth, container.clientHeight);
+                                                                container.innerHTML = ""; // Limpa o texto de carregamento que estava na div
+                                                                  container.appendChild(renderer.domElement);
 
-  scene.add(new THREE.AmbientLight(0x003344, 1));
+                                                                    // ===============================
+                                                                      // 💡 LIGHTS
+                                                                        // ===============================
+                                                                          light = new THREE.PointLight(0x00aaff, 1.5);
+                                                                            light.position.set(2, 2, 2);
+                                                                              scene.add(light);
 
-  // ===============================
-  // 🧍 CALEB
-  // ===============================
-  const geometry = new THREE.CapsuleGeometry(0.5, 1.2, 8, 16);
+                                                                                scene.add(new THREE.AmbientLight(0x003344, 1));
 
-  material = new THREE.MeshStandardMaterial({
-    color: 0x111111,
-    emissive: 0x00aaff,
-    emissiveIntensity: 0.25,
-    metalness: 0.5,
-    roughness: 0.3
-  });
+                                                                                  // ===============================
+                                                                                    // 🧍 CALEB
+                                                                                      // ===============================
+                                                                                        const geometry = new THREE.CapsuleGeometry(0.5, 1.2, 8, 16);
 
-  caleb = new THREE.Mesh(geometry, material);
-  scene.add(caleb);
+                                                                                          material = new THREE.MeshStandardMaterial({
+                                                                                              color: 0x111111,
+                                                                                                  emissive: 0x00aaff,
+                                                                                                      emissiveIntensity: 0.25,
+                                                                                                          metalness: 0.5,
+                                                                                                              roughness: 0.3
+                                                                                                                });
 
-  // ===============================
-  // ✨ PARTICLES
-  // ===============================
-  const particlesGeometry = new THREE.BufferGeometry();
-  const count = 120;
+                                                                                                                  caleb = new THREE.Mesh(geometry, material);
+                                                                                                                    scene.add(caleb);
 
-  const positions = [];
+                                                                                                                      // ===============================
+                                                                                                                        // ✨ PARTICLES
+                                                                                                                          // ===============================
+                                                                                                                            const particlesGeometry = new THREE.BufferGeometry();
+                                                                                                                              const count = 120;
 
-  for (let i = 0; i < count; i++) {
-    positions.push(
-      (Math.random() - 0.5) * 4,
-      (Math.random() - 0.5) * 4,
-      (Math.random() - 0.5) * 4
-    );
-  }
+                                                                                                                                const positions = [];
 
-  particlesGeometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(positions, 3)
-  );
+                                                                                                                                  for (let i = 0; i < count; i++) {
+                                                                                                                                      positions.push(
+                                                                                                                                            (Math.random() - 0.5) * 4,
+                                                                                                                                                  (Math.random() - 0.5) * 4,
+                                                                                                                                                        (Math.random() - 0.5) * 4
+                                                                                                                                                            );
+                                                                                                                                                              }
 
-  const particlesMaterial = new THREE.PointsMaterial({
-    color: 0x00aaff,
-    size: 0.03
-  });
+                                                                                                                                                                particlesGeometry.setAttribute(
+                                                                                                                                                                    "position",
+                                                                                                                                                                        new THREE.Float32BufferAttribute(positions, 3)
+                                                                                                                                                                          );
 
-  particles = new THREE.Points(particlesGeometry, particlesMaterial);
-  scene.add(particles);
+                                                                                                                                                                            const particlesMaterial = new THREE.PointsMaterial({
+                                                                                                                                                                                color: 0x00aaff,
+                                                                                                                                                                                    size: 0.03
+                                                                                                                                                                                      });
 
-  // ===============================
-  // 🧠 EVENTS LORE (OPCIONAL)
-  // ===============================
-  if (window.universe?.on) {
-    universe.on("caleb_origin_unlocked", () => {
-      evolveCaleb(2);
-    });
+                                                                                                                                                                                        particles = new THREE.Points(particlesGeometry, particlesMaterial);
+                                                                                                                                                                                          scene.add(particles);
 
-    universe.on("universe_ready", () => {
-      evolveCaleb(0);
-    });
-  }
+                                                                                                                                                                                            // ==========================================================
+                                                                                                                                                                                              // 🧠 INTEGRACAO: LOCALSTORAGE & REVELAÇÃO DE LORE
+                                                                                                                                                                                                // ==========================================================
+                                                                                                                                                                                                  verificarERevelarProgresso();
 
-  animate();
-}
+                                                                                                                                                                                                    // Mantém seus eventos legados caso queira disparar por eventos no console
+                                                                                                                                                                                                      if (window.universe?.on) {
+                                                                                                                                                                                                          universe.on("caleb_origin_unlocked", () => {
+                                                                                                                                                                                                                evolveCaleb(2);
+                                                                                                                                                                                                                    });
 
-// =======================================
-// 🌌 EVOLUÇÃO VISUAL
-// =======================================
-function evolveCaleb(level) {
+                                                                                                                                                                                                                        universe.on("universe_ready", () => {
+                                                                                                                                                                                                                              evolveCaleb(0);
+                                                                                                                                                                                                                                  });
+                                                                                                                                                                                                                                    }
 
-  CalebState.level = level;
+                                                                                                                                                                                                                                      animate();
+                                                                                                                                                                                                                                      }
 
-  switch (level) {
+                                                                                                                                                                                                                                      // ==========================================================
+                                                                                                                                                                                                                                      // 🔍 FUNÇÃO DE CHECAGEM DO PROGRESSO DA LORE
+                                                                                                                                                                                                                                      // ==========================================================
+                                                                                                                                                                                                                                      function verificarERevelarProgresso() {
+                                                                                                                                                                                                                                        const blocoSecreto = document.getElementById("secret-passado");
 
-    case 0:
-      material.emissiveIntensity = 0.2;
-      particles.material.size = 0.02;
-      break;
+                                                                                                                                                                                                                                          // Se a nossa função utilitária do storageHelper estiver ativa no site
+                                                                                                                                                                                                                                            if (typeof verificarSegredoDesbloqueado === "function") {
+                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                    if (verificarSegredoDesbloqueado(SEGREDO_ID)) {
+                                                                                                                                                                                                                                                          // 1. Revela o texto borrado via CSS
+                                                                                                                                                                                                                                                                if (blocoSecreto) {
+                                                                                                                                                                                                                                                                        blocoSecreto.classList.add("revealed");
+                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                    // 2. Evolui o Caleb 3D para o Nível 2 (Despertando)
+                                                                                                                                                                                                                                                                                          evolveCaleb(2);
+                                                                                                                                                                                                                                                                                                console.log("🔓 [Progresso] Segredo do Caleb detectado. Modelo 3D evoluído para o nível 2!");
+                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                          // Caso contrário, deixa ele no nível 0 (Dormindo)
+                                                                                                                                                                                                                                                                                                                evolveCaleb(0);
+                                                                                                                                                                                                                                                                                                                      console.log("🔒 [Progresso] Segredo do Caleb ainda está trancado.");
+                                                                                                                                                                                                                                                                                                                          }
 
-    case 1:
-      material.emissiveIntensity = 0.5;
-      particles.material.size = 0.03;
-      break;
+                                                                                                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                                                                                                // Modo de segurança caso o arquivo de utilitários falhe
+                                                                                                                                                                                                                                                                                                                                    evolveCaleb(0);
+                                                                                                                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                      }
 
-    case 2:
-      material.emissiveIntensity = 0.9;
-      particles.material.size = 0.05;
-      break;
+                                                                                                                                                                                                                                                                                                                                      // =======================================
+                                                                                                                                                                                                                                                                                                                                      // 🌌 EVOLUÇÃO VISUAL
+                                                                                                                                                                                                                                                                                                                                      // =======================================
+                                                                                                                                                                                                                                                                                                                                      function evolveCaleb(level) {
 
-    case 3:
-      material.emissiveIntensity = 1.3;
-      particles.material.size = 0.08;
-      break;
-  }
-}
+                                                                                                                                                                                                                                                                                                                                        CalebState.level = level;
 
-// =======================================
-// 🌀 MOUSE STATE
-// =======================================
-let targetX = 0;
-let targetY = 0;
+                                                                                                                                                                                                                                                                                                                                          // Garante que o material e as partículas existem antes de mexer nelas
+                                                                                                                                                                                                                                                                                                                                            if (!material || !particles) return;
 
-document.addEventListener("mousemove", (e) => {
-  targetX = (e.clientX / window.innerWidth) - 0.5;
-  targetY = (e.clientY / window.innerHeight) - 0.5;
-});
+                                                                                                                                                                                                                                                                                                                                              switch (level) {
+                                                                                                                                                                                                                                                                                                                                                  case 0:
+                                                                                                                                                                                                                                                                                                                                                        material.emissiveIntensity = 0.2;
+                                                                                                                                                                                                                                                                                                                                                              particles.material.size = 0.02;
+                                                                                                                                                                                                                                                                                                                                                                    break;
 
-// =======================================
-// 🌌 ANIMAÇÃO VIVA
-// =======================================
-function animate() {
+                                                                                                                                                                                                                                                                                                                                                                        case 1:
+                                                                                                                                                                                                                                                                                                                                                                              material.emissiveIntensity = 0.5;
+                                                                                                                                                                                                                                                                                                                                                                                    particles.material.size = 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                          break;
 
-  requestAnimationFrame(animate);
+                                                                                                                                                                                                                                                                                                                                                                                              case 2:
+                                                                                                                                                                                                                                                                                                                                                                                                    material.emissiveIntensity = 0.9;
+                                                                                                                                                                                                                                                                                                                                                                                                          particles.material.size = 0.05;
+                                                                                                                                                                                                                                                                                                                                                                                                                break;
 
-  const t = performance.now() * 0.001;
+                                                                                                                                                                                                                                                                                                                                                                                                                    case 3:
+                                                                                                                                                                                                                                                                                                                                                                                                                          material.emissiveIntensity = 1.3;
+                                                                                                                                                                                                                                                                                                                                                                                                                                particles.material.size = 0.08;
+                                                                                                                                                                                                                                                                                                                                                                                                                                      break;
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-  if (caleb) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                        // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                        // 🌀 MOUSE STATE
+                                                                                                                                                                                                                                                                                                                                                                                                                                        // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                        let targetX = 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                        let targetY = 0;
 
-    // RESPIRAÇÃO
-    caleb.scale.y = 1 + Math.sin(t * 2) * 0.03;
-    caleb.scale.x = 1 + Math.sin(t * 2) * 0.01;
+                                                                                                                                                                                                                                                                                                                                                                                                                                        document.addEventListener("mousemove", (e) => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                          targetX = (e.clientX / window.innerWidth) - 0.5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            targetY = (e.clientY / window.innerHeight) - 0.5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            });
 
-    // ROTAÇÃO VIVA
-    caleb.rotation.y = Math.sin(t * 0.6) * (0.3 + CalebState.level * 0.1);
-    caleb.rotation.x = Math.cos(t * 0.4) * 0.1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                            // 🌌 ANIMAÇÃO VIVA
+                                                                                                                                                                                                                                                                                                                                                                                                                                            // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                            function animate() {
 
-  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                              requestAnimationFrame(animate);
 
-  if (particles) {
-    particles.rotation.y += 0.001 + CalebState.level * 0.001;
-  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                const t = performance.now() * 0.001;
 
-  if (light) {
-    light.intensity = 1.3 + Math.sin(t * 3) * 0.4;
-  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  if (caleb) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                      // RESPIRAÇÃO
+                                                                                                                                                                                                                                                                                                                                                                                                                                                          caleb.scale.y = 1 + Math.sin(t * 2) * 0.03;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              caleb.scale.x = 1 + Math.sin(t * 2) * 0.01;
 
-  if (camera) {
-    camera.position.x += (targetX * 1.2 - camera.position.x) * 0.05;
-    camera.position.y += (-targetY * 1.2 - camera.position.y) * 0.05;
-  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  // ROTAÇÃO VIVA
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      caleb.rotation.y = Math.sin(t * 0.6) * (0.3 + CalebState.level * 0.1);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                          caleb.rotation.x = Math.cos(t * 0.4) * 0.1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-  if (renderer && scene && camera) {
-    renderer.render(scene, camera);
-  }
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                              if (particles) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  particles.rotation.y += 0.001 + CalebState.level * 0.001;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-// =======================================
-// 🚀 BOOT
-// =======================================
-document.addEventListener("DOMContentLoaded", initCaleb);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      if (light) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          light.intensity = 1.3 + Math.sin(t * 3) * 0.4;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              if (camera) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  camera.position.x += (targetX * 1.2 - camera.position.x) * 0.05;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      camera.position.y += (-targetY * 1.2 - camera.position.y) * 0.05;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          if (renderer && scene && camera) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              renderer.render(scene, camera);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                // Ouve o redimensionamento da janela para não quebrar o 3D
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                window.addEventListener("resize", () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  const container = document.getElementById("canvas-3d") || document.getElementById("canvas-container");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    if (container && renderer && camera) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        camera.aspect = container.clientWidth / container.clientHeight;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            camera.updateProjectionMatrix();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                renderer.setSize(container.clientWidth, container.clientHeight);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  });
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  // 🚀 BOOT
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  // =======================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  document.addEventListener("DOMContentLoaded", initCaleb);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

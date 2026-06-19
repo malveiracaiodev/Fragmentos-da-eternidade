@@ -1,75 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Caleb - Ficha de Personagem</title>
+                <link rel="stylesheet" href="../assets/css/style.css">
+                    <link rel="stylesheet" href="../assets/css/caleb.css">
+                        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                            </head>
+                            <body>
 
-  <title>Caleb | Fragmentos da Eternidade</title>
+                                <header class="main-header">
+                                        <h1 class="main-title">CALEB</h1>
+                                                <p class="header-tagline">FRAGMENTO ATIVO: DESCONHECIDO</p>
+                                                    </header>
 
-  <!-- 🌌 CSS GLOBAL -->
-  <link rel="stylesheet" href="../assets/css/style.css">
+                                                        <main class="container profile-container">
+                                                                
+                                                                        <div class="card profile-visual">
+                                                                                    <div class="card-inner-border">
+                                                                                                    <div id="canvas-3d" class="visual-box">
+                                                                                                                        <p style="color: #4b5563; text-align: center; margin-top: 150px;">[Visualizador 3D / Arte do Caleb]</p>
+                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                            </div>
 
-  <!-- 🎭 CSS ESPECÍFICO DO CALEB -->
-  <link rel="stylesheet" href="caleb.css">
-</head>
+                                                                                                                                                                    <div class="profile-info">
+                                                                                                                                                                                
+                                                                                                                                                                                            <section class="card">
+                                                                                                                                                                                                            <div class="card-inner-border">
+                                                                                                                                                                                                                                <h2>DADOS GERAIS</h2>
+                                                                                                                                                                                                                                                    <p><strong>Idade:</strong> 19 anos</p>
+                                                                                                                                                                                                                                                                        <p><strong>Origem:</strong> Terras Esquecidas pelas Estrelas</p>
+                                                                                                                                                                                                                                                                                            <p><strong>Descrição:</strong> Um jovem de olhar compenetrado que carrega marcas de nascença misteriosas que brilham sutilmente quando expostas a energia ancestral.</p>
+                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                        </section>
 
-<body>
+                                                                                                                                                                                                                                                                                                                                    <section class="card secret-card" id="secret-passado" data-secret="passado_caleb">
+                                                                                                                                                                                                                                                                                                                                                    <div class="card-inner-border">
+                                                                                                                                                                                                                                                                                                                                                                        <h2>📜 PASSADO OCULTO</h2>
+                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                <div class="blurred-content">
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <p>Caleb e seu irmão não nasceram em vilas comuns. Eles foram encontrados envoltos em um manto feito de fios de poeira cósmica após a queda do meteorito na Era do Eclipse...</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
 
-<div class="container">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="lock-overlay">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <p><i class="fa-solid fa-circle-nodes"></i> INFORMAÇÃO BLOQUEADA</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Descubra a verdade sobre a infância de Caleb nos capítulos da história para revelar este registro.</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </section>
 
-  <!-- LADO ESQUERDO -->
-  <div class="left">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </main>
 
-    <div class="aura"></div>
-
-    <!-- 🎥 CANVAS 3D -->
-    <div id="canvas-container"></div>
-
-    <p class="subtitle">
-      Entidade desconhecida detectada
-    </p>
-
-  </div>
-
-  <!-- LADO DIREITO -->
-  <div class="right">
-
-    <h1 class="name">CALEB</h1>
-
-    <div class="info-box">
-      <h3>IDENTIDADE</h3>
-      <p>Idade: <span id="idade">???</span></p>
-      <p>Origem: <span id="origem">???</span></p>
-      <p>Status: <span id="status">Ativo</span></p>
-    </div>
-
-    <div class="info-box">
-      <h3>REGISTROS</h3>
-      <p id="log1">[ BLOQUEADO ] Fragmento 01</p>
-      <p id="log2">[ BLOQUEADO ] Fragmento 02</p>
-    </div>
-
-    <button id="unlockBtn">Desbloquear fragmento</button>
-
-  </div>
-
-</div>
-
-<!-- =============================== -->
-<!-- SCRIPTS (ORDEM CORRETA) -->
-<!-- =============================== -->
-
-<!-- 🌌 ENGINE GLOBAL -->
-<script src="../engine/universe.js"></script>
-<script src="../engine/lore.js"></script>
-
-<!-- 🎥 THREE.JS -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<!-- 🧠 CALEB UNIFICADO (NOVO SISTEMA) -->
-<script src="caleb.engine.js"></script>
-
-</body>
-
-</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script href="../assets/js/utils/storageHelper.js"></script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <script href="caleb.engine.js"></script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
