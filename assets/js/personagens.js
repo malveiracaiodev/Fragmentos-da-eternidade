@@ -1,8 +1,3 @@
-const grid = document.getElementById("grid");
-
-// ===============================
-// 🧬 CRIA CARD
-// ===============================
 function createCard(id, data) {
 
   const card = document.createElement("a");
@@ -11,7 +6,7 @@ function createCard(id, data) {
   const isUnlocked = data.unlocked === true;
 
   if (isUnlocked) {
-    card.href = `characters/${id}.html`;
+    card.href = `../personagens/${id}.html`;
     card.classList.add("unlocked");
   } else {
     card.href = "javascript:void(0)";
@@ -27,38 +22,53 @@ function createCard(id, data) {
 }
 
 // ===============================
-// 🌌 RENDER
+// 🌌 RENDER SEGURO (RETRY SYSTEM)
 // ===============================
 function render() {
 
-  if (!grid) return;
-  if (!window.universe) return;
+  const grid = document.getElementById("grid");
+
+  if (!grid) {
+    console.warn("Grid ainda não existe, tentando novamente...");
+    return;
+  }
+
+  if (!window.universe?.state?.characters) {
+    console.warn("Universe ainda não carregou, tentando novamente...");
+    return;
+  }
 
   const chars = universe.state.characters;
 
   grid.innerHTML = "";
 
-  for (let id in chars) {
-    grid.appendChild(createCard(id, chars[id]));
-  }
+  Object.entries(chars).forEach(([id, data]) => {
+    grid.appendChild(createCard(id, data));
+  });
 
   console.log("Personagens renderizados");
 }
 
 // ===============================
-// 🔥 UI REATIVA (IMPORTANTE)
+// 🔥 AUTO RETRY (ESSENCIAL)
 // ===============================
-function attachUniverseListener() {
-  if (!window.universe?.on) return;
+function boot() {
 
-  universe.on("character_updated", render);
-  universe.on("chapter_loaded", render);
+  const interval = setInterval(() => {
+
+    const grid = document.getElementById("grid");
+
+    if (grid && window.universe?.state?.characters) {
+      render();
+      clearInterval(interval);
+    }
+
+  }, 100);
 }
 
 // ===============================
 // 🚀 INIT
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-  render();
-  attachUniverseListener();
+  boot();
 });
