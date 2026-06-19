@@ -1,3 +1,49 @@
+/* ===============================
+   WIKI HEADER
+=============================== */
+.wiki-header {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+}
+
+/* título principal */
+.wiki-title h1 {
+  font-size: 22px;
+  letter-spacing: 6px;
+  color: #00aaff;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 20px rgba(0,170,255,0.3);
+}
+
+/* subtítulo */
+.wiki-title h2 {
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+}
+
+/* linha decorativa estilo sci-fi */
+.wiki-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 12px auto 0 auto;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00aaff,
+    transparent
+  );
+
+  opacity: 0.6;
+}
+
+
+
 /* =========================================
    🌌 PERSONAGENS - FRAGMENTOS DA ETERNIDADE
 ========================================= */
