@@ -1,10 +1,5 @@
 /* ===============================
-   🌌 FRAGMENTOS DA ETERNIDADE
-   STYLE.CSS - NEW CORE
-   =============================== */
-
-/* ===============================
-   RESET BASE
+   RESET
 =============================== */
 * {
   margin: 0;
@@ -15,138 +10,126 @@
 html, body {
   width: 100%;
   height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: system-ui, Arial;
+  background: #05070d;
   color: white;
   overflow-x: hidden;
-  background: #05070d;
 }
 
 /* ===============================
-   🌌 FUNDO DO UNIVERSO (FIXO)
+   FUNDO UNIVERSO
 =============================== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(120, 80, 255, 0.15), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0, 200, 255, 0.10), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(255, 0, 120, 0.08), transparent 50%),
     radial-gradient(circle at top, #0b0f1a, #05070d);
   z-index: -1;
-  pointer-events: none;
-}
-
-/* leve “noise” cinematográfico */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("assets/noise.png");
-  opacity: 0.04;
-  z-index: -1;
-  pointer-events: none;
 }
 
 /* ===============================
-   HERO PRINCIPAL
+   HERO
 =============================== */
 .hero {
-  width: 100%;
-  min-height: 60vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-
+  padding: 20px;
   background: transparent;
 }
 
-.hero h1 {
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.hero p {
-  margin-top: 10px;
-  opacity: 0.7;
-  font-size: 1rem;
+.hero img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ===============================
-   CONTEÚDO PRINCIPAL
+   NAV (CORRIGIDO)
+=============================== */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  padding: 6px 10px;
+  border-radius: 8px;
+
+  transition: 0.2s;
+}
+
+nav a:hover {
+  background: rgba(120, 120, 255, 0.15);
+}
+
+/* ===============================
+   MAIN
 =============================== */
 main {
-  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
 
 /* ===============================
-   CARD GENÉRICO (LORE / PERSONAGENS)
+   CARDS
 =============================== */
 .card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 16px;
+  border-radius: 12px;
   margin-bottom: 12px;
-  backdrop-filter: blur(8px);
-  transition: 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(120, 120, 255, 0.3);
 }
 
 /* ===============================
-   BOTÕES
+   WIKI GRID
 =============================== */
-button {
-  background: rgba(120, 120, 255, 0.15);
-  border: 1px solid rgba(120, 120, 255, 0.3);
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.wiki-item {
+  background: rgba(255,255,255,0.04);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none;
   color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
-button:hover {
-  background: rgba(120, 120, 255, 0.25);
+.wiki-item:hover {
+  background: rgba(120,120,255,0.1);
 }
 
 /* ===============================
-   TEXTO DE LORE / DESBLOQUEIO
+   FOOTER
 =============================== */
-.lore-unlocked {
-  color: #8efcff;
-  text-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
-}
-
-.hidden {
-  opacity: 0.3;
-  filter: blur(1px);
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
 }
 
 /* ===============================
-   RESPONSIVO MOBILE
+   MOBILE
 =============================== */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-
-  main {
-    padding: 14px;
-  }
-
-  .card {
-    padding: 12px;
+  nav a {
+    font-size: 0.8rem;
   }
 }
