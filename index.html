@@ -1,33 +1,91 @@
-<!-- MAIN -->
-<main>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-    <section class="card">
-        <h2>📖 Bem-vindo</h2>
-        <p>O universo de Fragmentos da Eternidade está apenas começando.</p>
-    </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <section class="card">
-        <h2>🌌 Explorar Universo</h2>
+    <title>Fragmentos da Eternidade</title>
 
-        <div class="grid">
+    <!-- 🎨 CSS PRINCIPAL -->
+    <link rel="stylesheet" href="assets/css/style.css">
 
-            <a href="personagens/index.html" class="wiki-item">
-                👤 Personagens
-            </a>
+    <!-- 🔒 fallback visual caso CSS falhe -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, #050816, #000);
+            color: #e5e7eb;
+        }
 
-            <a href="wiki/armas/" class="wiki-item">
-                ⚔️ Armas
-            </a>
+        a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+    </style>
+</head>
 
-            <a href="wiki/fragmentos/" class="wiki-item">
-                💎 Fragmentos
-            </a>
+<body>
 
-            <a href="wiki/eras/" class="wiki-item">
-                📜 Eras
-            </a>
+    <!-- HERO -->
+    <header class="hero">
+        <img src="assets/images/banner.png" alt="Fragmentos da Eternidade">
+    </header>
 
-        </div>
-    </section>
+    <!-- NAV -->
+    <nav>
+        <a href="./">Início</a>
+        <a href="capitulos/">História</a>
+        <a href="personagens/index.html">Personagens</a>
+        <a href="wiki/armas/">Armas</a>
+        <a href="wiki/fragmentos/">Fragmentos</a>
+        <a href="wiki/eras/">Eras</a>
+    </nav>
 
-</main>
+    <!-- MAIN -->
+    <main>
+
+        <section class="card">
+            <h2>📖 Bem-vindo</h2>
+            <p>O universo de Fragmentos da Eternidade está apenas começando.</p>
+        </section>
+
+        <section class="card">
+            <h2>🌌 Explorar Universo</h2>
+
+            <div class="grid">
+
+                <a href="personagens/index.html" class="wiki-item">
+                    👤 Personagens
+                </a>
+
+                <a href="wiki/armas/" class="wiki-item">
+                    ⚔️ Armas
+                </a>
+
+                <a href="wiki/fragmentos/" class="wiki-item">
+                    💎 Fragmentos
+                </a>
+
+                <a href="wiki/eras/" class="wiki-item">
+                    📜 Eras
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Fragmentos da Eternidade</p>
+    </footer>
+
+    <!-- ENGINE (opcional, desativado por segurança) -->
+    <!-- <script src="assets/js/main.js"></script> -->
+
+</body>
+
+</html>
