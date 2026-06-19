@@ -1,107 +1,120 @@
 /*
 ========================================
 FRAGMENTOS DA ETERNIDADE
-MAIN.JS - ENGINE VIVO (MARK I)
+MAIN.JS - ENGINE ESTÁVEL (FIXED)
 ========================================
 */
 
-// ===============================
-// 🚀 BOOT DO SISTEMA
-// ===============================
 console.log("Fragmentos da Eternidade iniciado");
 
 // ===============================
-// 🌌 INIT
+// BOOT
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Página carregada com sucesso");
+  console.log("Página carregada");
 
   carregarUltimoCapitulo();
   inicializarEngine();
+
+  // UI inicial mesmo sem engine
   atualizarUIViva();
 });
 
 // ===============================
-// 🧠 ENGINE INIT
+// ENGINE INIT SEGURA
 // ===============================
 function inicializarEngine() {
-  if (!window.universe) {
-    console.warn("Engine não encontrada");
+  const engine = window.universe || window.Universe;
+
+  if (!engine) {
+    console.warn("Engine não encontrada (modo offline)");
     return;
   }
 
-  console.log("Engine conectada ao universo");
+  console.log("Engine conectada");
 
-  // escuta eventos do universo
-  if (universe.on) {
-    universe.on("chapter_loaded", atualizarUIViva);
+  try {
+    if (engine.on) {
+      engine.on("chapter_loaded", atualizarUIViva);
+    }
+  } catch (e) {
+    console.warn("Erro ao conectar eventos da engine:", e);
   }
 }
 
 // ===============================
-// 🎨 UI VIVA (CORE DO SISTEMA)
+// UI VIVA SEGURA
 // ===============================
 function atualizarUIViva() {
-  if (!window.universe) return;
-
   const body = document.body;
 
-  // 🔵 estado Caleb desbloqueado
-  body.classList.toggle(
-    "caleb-unlocked",
-    Universe.state?.characters?.caleb?.unlocked
-  );
+  const engine = window.universe || window.Universe;
 
-  // 🔥 estado origem do Caleb
-  body.classList.toggle(
-    "caleb-origin",
-    Universe.state?.characters?.caleb?.origin
-  );
+  const calebUnlocked =
+    engine?.state?.characters?.caleb?.unlocked === true;
 
-  // 💎 fragmentos globais
-  body.classList.toggle(
-    "high-fragments",
-    (Universe.state?.lore?.globalFragments || 0) > 2
-  );
+  const calebOrigin =
+    engine?.state?.characters?.caleb?.origin === true;
 
-  console.log("UI do universo atualizada");
+  const highFragments =
+    (engine?.state?.lore?.globalFragments || 0) > 2;
+
+  body.classList.toggle("caleb-unlocked", calebUnlocked);
+  body.classList.toggle("caleb-origin", calebOrigin);
+  body.classList.toggle("high-fragments", highFragments);
+
+  console.log("UI atualizada", {
+    calebUnlocked,
+    calebOrigin,
+    highFragments
+  });
 }
 
 // ===============================
-// 📚 CARREGA ÚLTIMO CAPÍTULO
+// CAPÍTULO (SEGURADO)
 // ===============================
 async function carregarUltimoCapitulo() {
-
   try {
-
     const resposta = await fetch("data/capitulos.json");
+
+    if (!resposta.ok) {
+      console.warn("capitulos.json não encontrado");
+      return;
+    }
+
     const capitulos = await resposta.json();
 
-    const ultimoCapitulo = capitulos[capitulos.length - 1];
+    if (!Array.isArray(capitulos) || capitulos.length === 0) {
+      console.warn("Sem capítulos disponíveis");
+      return;
+    }
+
+    const ultimo = capitulos[capitulos.length - 1];
 
     const container = document.getElementById("ultimo-capitulo");
+
     if (!container) return;
 
     container.innerHTML = `
       <div class="card">
 
-        <h2>📖 ${ultimoCapitulo.titulo}</h2>
+        <h2>📖 ${ultimo.titulo || "Sem título"}</h2>
 
-        <p>${ultimoCapitulo.descricao}</p>
+        <p>${ultimo.descricao || ""}</p>
 
-        <a href="capitulos/${ultimoCapitulo.arquivo}" class="btn">
+        <a href="capitulos/${ultimo.arquivo || "#"}" class="btn">
           Ler Capítulo
         </a>
 
       </div>
     `;
 
-    // 🔥 evento do universo
-    if (window.universe?.trigger) {
-      Universe.trigger("chapter_loaded", ultimoCapitulo);
+    const engine = window.universe || window.Universe;
+
+    if (engine?.trigger) {
+      engine.trigger("chapter_loaded", ultimo);
     }
 
-    // 🔥 atualiza UI depois do carregamento
     atualizarUIViva();
 
   } catch (erro) {
