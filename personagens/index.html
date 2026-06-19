@@ -4,27 +4,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Personagens | Fragmentos da Eternidade</title>
 
-  <link rel="stylesheet" href="assets/css/personagens.css">
+  <!-- 🔥 CSS GLOBAL CORRETO -->
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
 
-<header class="topbar">
+<header class="hero">
   <h1>FRAGMENTOS DA ETERNIDADE</h1>
   <p>Seleção de Entidades</p>
 </header>
 
-<main id="grid" class="grid"></main>
+<nav>
+  <a href="../index.html">Voltar</a>
+</nav>
+
+<main class="container">
+
+  <section class="card">
+    <h2>👤 Personagens</h2>
+    <p>Escolha uma entidade para acessar os fragmentos.</p>
+  </section>
+
+  <div id="grid" class="grid"></div>
+
+</main>
 
 <footer>
-  <p>Escolha uma entidade para acessar os fragmentos</p>
+  <p>Universo em expansão</p>
 </footer>
 
 <!-- ENGINE -->
-<script src="../universe.js"></script>
-<script src="../lore.js"></script>
+<script src="../assets/js/universe.js"></script>
+<script src="../assets/js/lore.js"></script>
 
 <!-- UI -->
 <script src="assets/js/personagens.js"></script>
