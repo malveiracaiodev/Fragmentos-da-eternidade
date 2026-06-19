@@ -1,6 +1,6 @@
-// ===============================
-// 🌌 DEFAULT STATE
-// ===============================
+/* ===============================
+   🌌 DEFAULT STATE
+=============================== */
 const defaultState = {
   characters: {
     caleb: {
@@ -25,12 +25,14 @@ const defaultState = {
 
   lore: {
     globalFragments: 0
-  }
+  },
+
+  version: "1.2-fixed"
 };
 
-// ===============================
-// 🌌 ENGINE CORE
-// ===============================
+/* ===============================
+   🌌 ENGINE CORE
+=============================== */
 const universe = {
   version: "1.2-fixed",
 
@@ -60,15 +62,19 @@ const universe = {
   }
 };
 
-// ===============================
-// 💾 STORAGE SYSTEM
-// ===============================
+/* ===============================
+   💾 STORAGE SYSTEM
+=============================== */
 const storage = {
   save() {
-    localStorage.setItem(
-      "fragmentos_universe",
-      JSON.stringify(universe.state)
-    );
+    try {
+      localStorage.setItem(
+        "fragmentos_universe",
+        JSON.stringify(universe.state)
+      );
+    } catch (e) {
+      console.warn("Erro ao salvar universo:", e);
+    }
   },
 
   load() {
@@ -82,15 +88,19 @@ const storage = {
       universe.state = {
         ...structuredClone(defaultState),
         ...parsed,
+
         characters: {
           ...defaultState.characters,
           ...(parsed.characters || {})
         },
+
         lore: {
           ...defaultState.lore,
           ...(parsed.lore || {})
         }
       };
+
+      console.log("💾 Universe carregado do storage");
 
     } catch (e) {
       console.warn("Erro ao carregar save, resetando universo");
@@ -104,17 +114,20 @@ const storage = {
   }
 };
 
-// ===============================
-// 🌐 GLOBAL EXPORT (CRÍTICO)
-// ===============================
+/* ===============================
+   🌐 GLOBAL EXPORT (CRÍTICO)
+=============================== */
 window.universe = universe;
 window.storage = storage;
 
-// ===============================
-// 🚀 INIT BOOT SEQUENCE
-// ===============================
-storage.load();
+/* ===============================
+   🚀 BOOT SEQUENCE (CORRETO)
+=============================== */
+window.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMContentLoaded", () => {
+  storage.load();
+
   universe.init();
+
+  console.log("✨ Universo inicializado com segurança");
 });
