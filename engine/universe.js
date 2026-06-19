@@ -1,5 +1,5 @@
 // ===============================
-// 🌌 UNIVERSE ENGINE - CORE (v1.2)
+// 🌌 UNIVERSE ENGINE - CORE (v1.2 FIXED)
 // ===============================
 
 // ===============================
@@ -36,15 +36,14 @@ const defaultState = {
 // 🌌 ENGINE CORE
 // ===============================
 const universe = {
-  version: "1.2",
+  version: "1.2-fixed",
 
   state: structuredClone(defaultState),
 
   listeners: {},
 
-  // ===============================
-  // 🔥 EVENT SYSTEM
-  // ===============================
+  ready: false,
+
   on(event, callback) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
@@ -57,11 +56,6 @@ const universe = {
     if (!list) return;
     list.forEach(cb => cb(data));
   },
-
-  // ===============================
-  // 🚀 READY EVENT (NOVO)
-  // ===============================
-  ready: false,
 
   init() {
     this.ready = true;
@@ -77,7 +71,7 @@ const storage = {
   save() {
     localStorage.setItem(
       "fragmentos_universe",
-      JSON.stringify(Universe.state)
+      JSON.stringify(universe.state)
     );
   },
 
@@ -89,7 +83,7 @@ const storage = {
     try {
       const parsed = JSON.parse(data);
 
-      Universe.state = {
+      universe.state = {
         ...structuredClone(defaultState),
         ...parsed,
         characters: {
@@ -117,9 +111,8 @@ const storage = {
 // ===============================
 // 🚀 INIT BOOT SEQUENCE
 // ===============================
-Storage.load();
+storage.load();
 
-// garante inicialização segura
 document.addEventListener("DOMContentLoaded", () => {
   universe.init();
 });
