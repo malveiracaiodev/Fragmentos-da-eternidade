@@ -10,22 +10,34 @@
 html, body {
   width: 100%;
   height: 100%;
-  font-family: system-ui, Arial;
+  font-family: system-ui, Arial, sans-serif;
+
   background: #05070d;
   color: white;
+
   overflow-x: hidden;
 }
 
 /* ===============================
-   FUNDO UNIVERSO
+   FUNDO UNIVERSO (CORRIGIDO)
 =============================== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+
   background:
-    radial-gradient(circle at top, #0b0f1a, #05070d);
-  z-index: -1;
+    radial-gradient(circle at top, rgba(11,15,26,0.9), rgba(5,7,13,1)),
+    radial-gradient(circle at bottom, rgba(0,170,255,0.08), transparent 60%);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* garante que tudo fique acima do fundo */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ===============================
@@ -36,7 +48,6 @@ body::before {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background: transparent;
 }
 
 .hero img {
@@ -45,7 +56,7 @@ body::before {
 }
 
 /* ===============================
-   NAV (CORRIGIDO)
+   NAV
 =============================== */
 nav {
   display: flex;
@@ -88,13 +99,15 @@ main {
 .card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
+
   padding: 16px;
   border-radius: 12px;
+
   margin-bottom: 12px;
 }
 
 /* ===============================
-   WIKI GRID
+   GRID WIKI
 =============================== */
 .grid {
   display: grid;
@@ -104,16 +117,23 @@ main {
 }
 
 .wiki-item {
+  display: block;
+
   background: rgba(255,255,255,0.04);
   padding: 12px;
+
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.08);
+
   text-decoration: none;
   color: white;
+
+  transition: 0.2s;
 }
 
 .wiki-item:hover {
   background: rgba(120,120,255,0.1);
+  transform: translateY(-2px);
 }
 
 /* ===============================
@@ -123,6 +143,7 @@ footer {
   text-align: center;
   padding: 20px;
   opacity: 0.6;
+  font-size: 0.85rem;
 }
 
 /* ===============================
