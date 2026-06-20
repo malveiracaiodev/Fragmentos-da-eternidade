@@ -27,22 +27,22 @@ h1, h2, h3, .main-nav a {
 }
 
 /* ==========================================================================
-   2. HEADER / BANNER DO TOPO (IMAGEM + EFEITO AZUL E DOURADO)
+   2. HEADER / BANNER DO TOPO (CLAREADO E REFORÇADO)
    ========================================================================== */
 .main-header {
     background: 
-        /* Luz Dourada na Direita */
-        radial-gradient(circle at right, rgba(253, 186, 116, 0.15), transparent 45%),
-        /* Luz Azul na Esquerda */
-        radial-gradient(circle at left, rgba(59, 130, 246, 0.15), transparent 45%),
-        /* Sombra linear escura embaixo para destacar títulos */
-        linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.4)),
-        /* Imagem de Fundo Corrigida */
+        /* Luz Dourada na Direita (Intensificada para dar brilho aos cristais) */
+        radial-gradient(circle at right, rgba(253, 186, 116, 0.25), transparent 60%),
+        /* Luz Azul na Esquerda (Intensificada para dar brilho aos cristais) */
+        radial-gradient(circle at left, rgba(59, 130, 246, 0.25), transparent 60%),
+        /* Sombra linear escura MUITO mais leve para não tapar o desenho do banner */
+        linear-gradient(to top, rgba(3, 7, 18, 0.6), rgba(3, 7, 18, 0.1)),
+        /* Imagem de Fundo */
         url('../images/banner.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 100px 20px;
+    padding: 130px 20px; /* Aumentado ligeiramente para mostrar mais verticalidade da imagem */
     text-align: center;
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
