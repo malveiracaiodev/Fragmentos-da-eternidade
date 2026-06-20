@@ -2,72 +2,195 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulos | Fragmentos da Eternidade</title>
+    <!-- Buscando o CSS correto subindo um nível -->
+    <link rel="stylesheet" href="../assets/css/style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<meta charset="UTF-8">
+    <style>
+        /* Estilos específicos para a estrutura de capítulos integrados ao layout do site */
+        .chapters-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+        }
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
+        .sidebar {
+            background-color: rgba(3, 7, 18, 0.95);
+            border: 1px solid #1f2833;
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+        }
 
-<title>Capítulos | Fragmentos da Eternidade</title>
+        .sidebar h2 {
+            font-family: 'Cinzel', serif;
+            color: #66fcf1;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1f2833;
+            padding-bottom: 10px;
+        }
 
-<link
-rel="stylesheet"
-href="../assets/css/style.css">
+        /* Botão Flutuante para abrir os capítulos no Celular */
+        .mobile-chapters-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
+        .mobile-chapters-toggle:active {
+            transform: scale(0.9);
+        }
+
+        /* Responsividade para Telas Menores (Celular) */
+        @media (max-width: 768px) {
+            .chapters-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 260px;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s ease;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+                border-radius: 0;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .mobile-chapters-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="page-header">
+    <!-- CABEÇALHO PADRÃO DO SITE (Evita que o leitor se sinta em outro site) -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="main-title">FRAGMENTOS <span class="sub-title-da">DA</span> ETERNIDADE</h1>
+            <p class="header-tagline">CADA FRAGMENTO GUARDA UMA MEMÓRIA.<br>CADA MEMÓRIA MOLDA UM DESTINO.</p>
+        </div>
+    </header>
 
-<h1>📖 História</h1>
+    <!-- MENU DE NAVEGAÇÃO INTERNO (Volta para a index e outras páginas) -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> INÍCIO</a></li>
+            <li><a href="#" class="active"><i class="fa-solid fa-book-open"></i> HISTÓRIA</a></li>
+            <li><a href="../universo/index.html"><i class="fa-solid fa-globe"></i> UNIVERSO</a></li>
+            <li><a href="../fragmentos/index.html"><i class="fa-solid fa-gem"></i> FRAGMENTOS</a></li>
+            <li><a href="../armas/index.html"><i class="fa-solid fa-wand-magic-sparkles"></i> ARMAS</a></li>
+            <li><a href="../personagens/index.html"><i class="fa-solid fa-user"></i> PERSONAGENS</a></li>
+            <li><a href="../timeline/index.html"><i class="fa-solid fa-hourglass-half"></i> LINHA DO TEMPO</a></li>
+        </ul>
+    </nav>
 
-<p>
-A jornada de Caleb através dos Fragmentos da Eternidade.
-</p>
+    <!-- ESTRUTURA DO HUB DE LEITURA -->
+    <div class="container chapters-layout">
 
-</header>
-
-
-<div class="chapters-layout">
-
-    <aside class="sidebar">
-
+        <!-- Menu Lateral de Capítulos -->
+        <aside class="sidebar" id="sidebar-capitulos">
             <h2>Capítulos</h2>
+            <div id="lista-capitulos">
+                <!-- Se o JavaScript falhar ou ainda não tiver gerado a lista, deixamos um link manual de fallback para segurança -->
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li><a href="#" style="color: #c5c6c7; text-decoration: none; display: block; padding: 10px 0;" onclick="carregarCapituloManual('capitulo1')">Capítulo 1: O Despertar</a></li>
+                </ul>
+            </div>
+        </aside>
 
-                    <div id="lista-capitulos">
+        <!-- Conteúdo Principal Dinâmico -->
+        <main class="chapter-main">
+            <div class="card" id="conteudo-dinamico-capitulo">
+                <div class="card-inner-border">
+                    <h2>Bem-vindo à História</h2>
+                    <p>Selecione um capítulo no menu lateral para iniciar sua jornada ou clique no botão abaixo para ler o primeiro capítulo.</p>
+                    <br>
+                    <button class="btn btn-blue" onclick="carregarCapituloManual('capitulo1')"><i class="fa-solid fa-book-open"></i> LER CAPÍTULO 1</button>
+                </div>
+            </div>
+        </main>
 
-                            </div>
+    </div>
 
-                                </aside>
+    <!-- Botão de controle para abrir o menu de capítulos no Celular -->
+    <button class="mobile-chapters-toggle" id="btn-toggle-capitulos" onclick="toggleSidebarMobile()">
+        <i class="fa-solid fa-list-ul"></i>
+    </button>
 
+    <footer class="main-footer">
+        <p>&copy; 2026 Fragmentos da Eternity. Todos os direitos reservados.</p>
+    </footer>
 
-                                    <main class="chapter-main">
+    <!-- Scripts de Controle -->
+    <script src="../assets/js/chapters.js"></script>
+    
+    <script>
+        // Função para abrir/fechar o menu de capítulos no celular
+        function toggleSidebarMobile() {
+            const sidebar = document.getElementById('sidebar-capitulos');
+            sidebar.classList.toggle('active');
+            
+            // Muda o ícone do botão flutuante entre a lista e o "X" de fechar
+            const icone = document.querySelector('#btn-toggle-capitulos i');
+            if(sidebar.classList.contains('active')) {
+                icone.className = "fa-solid fa-xmark";
+            } else {
+                icone.className = "fa-solid fa-list-ul";
+            }
+        }
 
-                                            <div class="card">
+        // Função de Fallback caso o chapters.js precise de ajuda para carregar no clique manual antes do carregamento completo do script
+        function carregarCapituloManual(capId) {
+            // Se a barra lateral mobile estiver aberta, fecha ela ao clicar
+            document.getElementById('sidebar-capitulos').classList.remove('active');
+            document.querySelector('#btn-toggle-capitulos i').className = "fa-solid fa-list-ul";
+            
+            // Executa a função padrão do seu arquivo chapters.js (certifique-se de usar a função correspondente lá dentro)
+            if (typeof carregarCapitulo === "function") {
+                carregarCapitulo(capId);
+            } else {
+                // Alternativa genérica de fetch assíncrono caso precise injetar na marra
+                fetch(`${capId}/${capId}.html`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('conteudo-dinamico-capitulo').innerHTML = html;
+                        window.scrollTo(0, 0);
+                    });
+            }
+        }
+    </script>
 
-                                                        <h2>
-                                                                        Bem-vindo à História
-                                                                                    </h2>
-
-                                                                                                <p>
-
-                                                                                                                Selecione um capítulo no menu lateral
-                                                                                                                                para iniciar sua jornada.
-
-                                                                                                                                            </p>
-
-                                                                                                                                                    </div>
-
-                                                                                                                                                        </main>
-
-                                                                                                                                                        </div>
-
-                                                                                                                                                        <script
-                                                                                                                                                        src="../assets/js/chapters.js">
-                                                                                                                                                        </script>
-
-                                                                                                                                                        </body>
-
-                                                                                                                                                        </html>
+</body>
+</html>
