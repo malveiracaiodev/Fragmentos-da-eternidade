@@ -27,16 +27,21 @@ h1, h2, h3, .main-nav a {
 }
 
 /* ==========================================================================
-   2. HEADER / BANNER DO TOPO (EFEITO AZUL E DOURADO)
+   2. HEADER / BANNER DO TOPO (IMAGEM + EFEITO AZUL E DOURADO)
    ========================================================================== */
 .main-header {
     background: 
         /* Luz Dourada na Direita */
-        radial-gradient(circle at right, rgba(253, 186, 116, 0.12), transparent 45%),
+        radial-gradient(circle at right, rgba(253, 186, 116, 0.15), transparent 45%),
         /* Luz Azul na Esquerda */
-        radial-gradient(circle at left, rgba(59, 130, 246, 0.12), transparent 45%),
-        /* Fundo Escuro Principal */
-        #030712; 
+        radial-gradient(circle at left, rgba(59, 130, 246, 0.15), transparent 45%),
+        /* Sombra linear escura embaixo para destacar títulos */
+        linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.4)),
+        /* Imagem de Fundo Corrigida */
+        url('../images/banner.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 100px 20px;
     text-align: center;
     position: relative;
@@ -283,7 +288,7 @@ h1, h2, h3, .main-nav a {
 .explore-list li a:hover {
     background-color: rgba(30, 41, 59, 0.4);
     border-color: rgba(255, 255, 255, 0.1);
-    transform: translateX(3px); /* Leve empurrão para a direita */
+    transform: translateX(3px);
 }
 
 .icon {
@@ -298,7 +303,6 @@ h1, h2, h3, .main-nav a {
     flex-shrink: 0;
 }
 
-/* Cores customizadas para os pequenos ícones em círculo */
 .circle-blue   { background-color: rgba(29, 78, 216, 0.2); color: #3b82f6; }
 .circle-gold   { background-color: rgba(217, 119, 6, 0.2); color: #fbbf24; }
 .circle-purple { background-color: rgba(109, 40, 217, 0.2); color: #a78bfa; }
@@ -374,10 +378,10 @@ h1, h2, h3, .main-nav a {
    ========================================================================== */
 @media (max-width: 1100px) {
     .grid-layout {
-        grid-template-columns: 1fr 1.2fr; /* Fica em 2 colunas em tablets */
+        grid-template-columns: 1fr 1.2fr;
     }
     .col-explorar {
-        grid-column: span 2; /* A lista de explorar ganha largura total abaixo */
+        grid-column: span 2;
     }
 }
 
@@ -387,7 +391,7 @@ h1, h2, h3, .main-nav a {
     }
     
     .grid-layout {
-        grid-template-columns: 1fr; /* 1 coluna em smartphones */
+        grid-template-columns: 1fr;
     }
     
     .col-explorar {
@@ -409,7 +413,6 @@ h1, h2, h3, .main-nav a {
         text-align: center;
     }
 
-    /* 📱 TRANSFORMAÇÃO DO MENU PARA O MODO HUD/APP CELULAR */
     .main-nav {
         position: fixed;
         bottom: 0; 
@@ -417,7 +420,7 @@ h1, h2, h3, .main-nav a {
         left: 0;
         width: 100%;
         z-index: 9999;
-        background-color: rgba(6, 11, 24, 0.95); /* Cor original #060b18 */
+        background-color: rgba(6, 11, 24, 0.95);
         border-top: 1px solid #1e293b;
         border-bottom: none;
         padding: 0;
@@ -426,10 +429,10 @@ h1, h2, h3, .main-nav a {
 
     .main-nav ul {
         display: flex;
-        flex-direction: row; /* Força ficar lado a lado */
-        justify-content: flex-start; /* Alinha do começo para permitir o deslize */
-        flex-wrap: nowrap;  /* Impede o empilhamento vertical */
-        overflow-x: auto;   /* Ativa a rolagem para o lado */
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
         overflow-y: hidden;
         padding: 5px 15px;
         margin: 0;
@@ -438,22 +441,21 @@ h1, h2, h3, .main-nav a {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Remove a barra de rolagem visual do navegador no celular */
     .main-nav ul::-webkit-scrollbar {
         display: none;
     }
 
     .main-nav li {
         margin: 0;
-        flex: 0 0 auto; /* Impede os botões de serem esmagados */
+        flex: 0 0 auto;
     }
 
     .main-nav a {
         padding: 8px 12px;
         font-size: 0.75rem;
-        white-space: nowrap; /* Impede o texto de quebrar linha */
+        white-space: nowrap;
         display: flex;
-        flex-direction: column; /* Ícone no topo, texto embaixo */
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 4px;
@@ -467,6 +469,6 @@ h1, h2, h3, .main-nav a {
     }
 
     body {
-        padding-bottom: 75px; /* Evita que o menu tampe o conteúdo do final das páginas */
+        padding-bottom: 75px;
     }
 }
