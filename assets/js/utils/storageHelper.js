@@ -1,40 +1,73 @@
+     // ==========================================================================
+// 💾 FRAGMENTOS DA ETERNIDADE - LOCAL STORAGE HELPER (INDIVIDUAL)
+// ==========================================================================
+
 /**
- *  * 🌌 FRAGMENTOS DA ETERNIDADE - ENGINE DE SALVAMENTO (UTILS)
-  * Este arquivo centraliza todas as funções que salvam e leem o progresso do leitor.
-   */
+ * Registra o desbloqueio de um item ou segredo na memória local do leitor.
+ * @param {string} segredoId - O ID único da arma, personagem ou lore (ex: 'arma_caleb')
+ */
+function desbloquearSegredo(segredoId) {
+    if (!segredoId) return;
 
-   // Chave única usada no LocalStorage para não misturar com outros sites
-   const STORAGE_KEY = "fragmentos_progresso";
+    // 1. Busca a lista de segredos já desbloqueados por ESTE leitor
+    let progressoAtual = localStorage.getItem("fragmentos_progresso");
+    let segredosDesbloqueados = [];
 
-   /**
-    * Obtém a lista de todos os segredos (IDs) já desbloqueados pelo usuário.
-     * @returns {Array<string>} Lista de IDs desbloqueados.
-      */
-      function obterProgresso() {
-          try {
-                  const dados = localStorage.getItem(STORAGE_KEY);
-                          return dados ? JSON.parse(dados) : [];
-                              } catch (e) {
-                                      console.error("⚠️ Erro ao ler o localStorage:", e);
-                                              return [];
-                                                  }
-                                                  }
+    if (progressoAtual) {
+        try {
+            segredosDesbloqueados = JSON.parse(progressoAtual);
+        } catch (e) {
+            console.error("⚠️ Erro ao ler progresso corrompido, resetando...", e);
+            segredosDesbloqueados = [];
+        }
+    }
 
-                                                  /**
-                                                   * Salva um novo segredo na Wiki do usuário.
-                                                    * @param {string} idSegredo - O ID único da arma, personagem ou local (ex: "lamina_eterna").
-                                                     * @returns {boolean} Retorna verdadeiro se o segredo acabou de ser descoberto, ou falso se já havia sido liberado antes.
-                                                      */
-                                                      function salvarProgressoWiki(idSegredo) {
-                                                          if (!idSegredo) return false;
-                                                              
-                                                                  let progresso = obterProgresso();
+    // 2. Se o leitor já desbloqueou esse item antes, não faz nada
+    if (segredosDesbloqueados.includes(segredoId)) {
+        console.log(`ℹ️ O segredo [${segredoId}] já havia sido descoberto por este leitor.`);
+        return;
+    }
 
-                                                                      // Se o ID ainda não existe na lista do leitor, adiciona
-                                                                          if (!progresso.includes(idSegredo)) {
-                                                                                  progresso.push(idSegredo);
-                                                                                          localStorage.setItem(STORAGE_KEY, JSON.stringify(progresso));
-                                                                                                  console.log(`🌌 [Wiki] Novo segredo desbloqueado: ${idSegredo}`);
+    // 3. Adiciona o novo ID à lista individual do leitor
+    segredosDesbloqueados.push(segredoId);
+
+    // 4. Salva de volta no localStorage do navegador dele
+    localStorage.setItem("fragmentos_progresso", JSON.stringify(segredosDesbloqueados));
+    console.log(`🔓 [DESBLOQUEADO] Novo segredo registrado para este leitor: ${segredoId}`);
+
+    // 5. DISPARO DO EVENTO GLOBAL: Avisa o universo do site em tempo real
+    const evento = new CustomEvent("segredoDesbloqueado", { detail: { id: segredoId } });
+    window.dispatchEvent(evento);
+}
+
+/**
+ * Checa se o leitor atual já desbloqueou um item específico.
+ * Usado pelas Wikis para remover o desfoque/blur das imagens e textos.
+ * @param {string} segredoId 
+ * @returns {boolean}
+ */
+function verificarSegredoDesbloqueado(segredoId) {
+    let progressoAtual = localStorage.getItem("fragmentos_progresso");
+    if (!progressoAtual) return false;
+
+    try {
+        let segredosDesbloqueados = JSON.parse(progressoAtual);
+        return segredosDesbloqueados.includes(segredoId);
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Função de trapaça para testes no console durante o desenvolvimento.
+ * Digite limparMeuProgresso() no console para resetar e testar tudo do zero.
+ */
+function limparMeuProgresso() {
+    localStorage.removeItem("fragmentos_progresso");
+    console.log("🧹 Seu progresso individual foi resetado. Tudo voltou a ficar trancado!");
+    window.location.reload();
+}
+                                                                                             console.log(`🌌 [Wiki] Novo segredo desbloqueado: ${idSegredo}`);
                                                                                                           return true; // Desbloqueio inédito!
                                                                                                               }
                                                                                                                   
