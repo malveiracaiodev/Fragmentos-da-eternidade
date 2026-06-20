@@ -1,7 +1,6 @@
 /* ==========================================================================
    LAYOUT DO HUB DE CAPÍTULOS (capindex.html)
    ========================================================================== */
-
 .chapters-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -12,15 +11,30 @@
     position: relative;
 }
 
+/* --- BANNER DE FUNDO PARA O TOPO DA PÁGINA --- */
+.chapter-header-banner {
+    background: 
+        radial-gradient(circle at right, rgba(253, 186, 116, 0.15), transparent 45%),
+        radial-gradient(circle at left, rgba(59, 130, 246, 0.15), transparent 45%),
+        linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.5)),
+        url('../images/banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px 20px;
+    text-align: center;
+    border-bottom: 1px solid #1f2833;
+}
+
 /* --- BARRA LATERAL (MENU DE CAPÍTULOS) --- */
 .sidebar {
     background-color: rgba(3, 7, 18, 0.95);
     border: 1px solid #1f2833;
-    border-radius: 4px; /* Mantendo o padrão semi-quadrado medieval/cyberpunk */
+    border-radius: 4px;
     padding: 24px;
     height: fit-content;
     position: sticky;
-    top: 20px; /* Gruda na tela ao rolar páginas longas */
+    top: 20px;
 }
 
 .sidebar h2 {
@@ -35,7 +49,6 @@
     text-transform: uppercase;
 }
 
-/* Links dos Capítulos */
 .capitulo-item {
     margin-bottom: 12px;
     padding: 4px 0;
@@ -53,8 +66,7 @@
     padding-left: 0;
 }
 
-.capitulo-item a:hover, 
-.capitulo-item a.active-chapter {
+.capitulo-item a:hover {
     color: #66fcf1;
     padding-left: 10px;
     border-left: 2px solid #66fcf1;
@@ -66,7 +78,6 @@
     min-height: 500px;
 }
 
-/* Estilização do texto injetado (Cena 1, Cena 2, Diálogos, Vídeos) */
 .chapter-content {
     animation: fadeInContent 0.4s ease forwards;
 }
@@ -94,7 +105,7 @@
 }
 
 .chapter-content p {
-    font-family: 'Inter', sans-serif; /* Perfeito para leitura longa */
+    font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: #c5c6c7;
@@ -102,17 +113,14 @@
     text-align: justify;
 }
 
-/* Destaque para falas de personagens */
 .dialogo {
     color: #ffffff !important;
     font-weight: 600;
     border-left: 3px solid #45f3ff;
     padding-left: 16px;
     margin: 28px 0 !important;
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-/* --- CONTAINERS DE VÍDEO (IA GERATIVA) --- */
 .video-container {
     width: 100%;
     margin: 45px 0;
@@ -128,9 +136,8 @@
     display: block;
 }
 
-/* --- BOTÃO FLUTUANTE MOBILE --- */
 .mobile-chapters-toggle {
-    display: none; /* Invisível no PC */
+    display: none;
     position: fixed;
     bottom: 25px;
     right: 25px;
@@ -155,45 +162,36 @@
     box-shadow: 0 0 20px #66fcf1;
 }
 
-/* --- ANIMAÇÕES --- */
 @keyframes fadeInContent {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE (MOBILE FIRST / MEDIA QUERIES)
-   ========================================================================== */
-
 @media (max-width: 900px) {
     .chapters-layout {
-        grid-template-columns: 1fr; /* Quebra em uma única coluna */
+        grid-template-columns: 1fr;
         gap: 0;
     }
 
-    /* Menu lateral vira um painel deslizante (Drawer) */
     .sidebar {
         position: fixed;
         top: 0;
-        left: -320px; /* Escondido para fora da tela esquerda */
+        left: -320px;
         width: 280px;
         height: 100vh;
         z-index: 999;
         transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
         border-radius: 0;
-        border-y: none;
-        border-right: 1px solid #1f2833;
-        overflow-y: auto; /* Permite scroll se tiver muitos capítulos */
+        overflow-y: auto;
     }
 
-    /* Classe ativada pelo JS para abrir a barra lateral */
     .sidebar.active {
         left: 0;
     }
 
     .mobile-chapters-toggle {
-        display: flex; /* Aparece no celular */
+        display: flex;
     }
     
     .chapter-title {
@@ -203,15 +201,4 @@
     .chapter-content p {
         font-size: 1.05rem;
     }
-}
-
-/* --- BANNER DE FUNDO PARA O TOPO DA PÁGINA --- */
-.chapter-header-banner {
-    background-image: linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.5)), url('../assets/images/banner.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 60px 20px; /* Garante uma boa altura para destacar a arte */
-    text-align: center;
-    border-bottom: 1px solid #1f2833;
 }
