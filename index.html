@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <!-- O Cabeçalho agora foca 100% em exibir a arte do banner com nitidez máxima -->
+    <!-- Cabeçalho limpo focado em exibir a arte do banner com nitidez máxima -->
     <header class="main-header">
         <div class="header-content" style="min-height: 140px;">
             <!-- Exibição limpa da arte do seu banner -->
@@ -45,11 +45,12 @@
             </div>
         </section>
 
-        <section class="card col-destaque" style="background-image: linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.4)), url('assets/images/banner.png');">
+        <!-- CORRIGIDO: Removido o style inline que injetava o banner.png aqui por trás -->
+        <section class="card col-destaque">
             <div class="card-inner-border">
                 <span class="badge">ÚLTIMO CAPÍTULO</span>
                 <h2 class="cap-title">CAPÍTULO 1<br><span class="cap-subtitle">O DESPERTAR</span></h2>
-                <p>Em um mundo esquecido pelas estrelas, um jovem começa a despertar para um destiny que pode mudar tudo.</p>
+                <p>Em um mundo esquecido pelas estrelas, um jovem começa a despertar para um destino que pode mudar tudo.</p>
                 <div class="destaque-links">
                     <a href="capitulos/capindex.html" class="btn-read"><i class="fa-solid fa-book-open"></i> LER AGORA</a>
                     <a href="capitulos/capindex.html" class="link-more">VER TODOS OS CAPÍTULOS →</a>
