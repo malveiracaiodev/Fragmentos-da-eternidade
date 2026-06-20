@@ -1,0 +1,206 @@
+/* ==========================================================================
+   LAYOUT DO HUB DE CAPÍTULOS (capindex.html)
+   ========================================================================== */
+
+.chapters-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 25px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    align-items: start;
+    position: relative;
+}
+
+/* --- BARRA LATERAL (MENU DE CAPÍTULOS) --- */
+.sidebar {
+    background-color: rgba(3, 7, 18, 0.95);
+    border: 1px solid #1f2833;
+    border-radius: 4px; /* Mantendo o padrão semi-quadrado medieval/cyberpunk */
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 20px; /* Gruda na tela ao rolar páginas longas */
+}
+
+.sidebar h2 {
+    font-family: 'Cinzel', serif;
+    color: #66fcf1;
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1f2833;
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Links dos Capítulos */
+.capitulo-item {
+    margin-bottom: 12px;
+    padding: 4px 0;
+}
+
+.capitulo-item a {
+    color: #c5c6c7;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: all 0.25s ease;
+    display: block;
+    border-left: 2px solid transparent;
+    padding-left: 0;
+}
+
+.capitulo-item a:hover, 
+.capitulo-item a.active-chapter {
+    color: #66fcf1;
+    padding-left: 10px;
+    border-left: 2px solid #66fcf1;
+    text-shadow: 0 0 8px rgba(102, 252, 241, 0.5);
+}
+
+/* --- ÁREA PRINCIPAL DO TEXTO (CONTEÚDO DINÂMICO) --- */
+.chapter-main {
+    min-height: 500px;
+}
+
+/* Estilização do texto injetado (Cena 1, Cena 2, Diálogos, Vídeos) */
+.chapter-content {
+    animation: fadeInContent 0.4s ease forwards;
+}
+
+.chapter-title {
+    font-family: 'Cinzel', serif;
+    color: #45f3ff;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    color: #66fcf1;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(31, 40, 51, 0.6);
+    padding-bottom: 8px;
+}
+
+.chapter-content p {
+    font-family: 'Inter', sans-serif; /* Perfeito para leitura longa */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #c5c6c7;
+    margin-bottom: 22px;
+    text-align: justify;
+}
+
+/* Destaque para falas de personagens */
+.dialogo {
+    color: #ffffff !important;
+    font-weight: 600;
+    border-left: 3px solid #45f3ff;
+    padding-left: 16px;
+    margin: 28px 0 !important;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* --- CONTAINERS DE VÍDEO (IA GERATIVA) --- */
+.video-container {
+    width: 100%;
+    margin: 45px 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(102, 252, 241, 0.15);
+    background-color: #000;
+    border: 1px solid rgba(102, 252, 241, 0.2);
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+/* --- BOTÃO FLUTUANTE MOBILE --- */
+.mobile-chapters-toggle {
+    display: none; /* Invisível no PC */
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #0b0c10;
+    color: #66fcf1;
+    border: 1px solid #66fcf1;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+    z-index: 1000;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.mobile-chapters-toggle:hover {
+    background-color: #66fcf1;
+    color: #0b0c10;
+    box-shadow: 0 0 20px #66fcf1;
+}
+
+/* --- ANIMAÇÕES --- */
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE FIRST / MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .chapters-layout {
+        grid-template-columns: 1fr; /* Quebra em uma única coluna */
+        gap: 0;
+    }
+
+    /* Menu lateral vira um painel deslizante (Drawer) */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -320px; /* Escondido para fora da tela esquerda */
+        width: 280px;
+        height: 100vh;
+        z-index: 999;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+        border-radius: 0;
+        border-y: none;
+        border-right: 1px solid #1f2833;
+        overflow-y: auto; /* Permite scroll se tiver muitos capítulos */
+    }
+
+    /* Classe ativada pelo JS para abrir a barra lateral */
+    .sidebar.active {
+        left: 0;
+    }
+
+    .mobile-chapters-toggle {
+        display: flex; /* Aparece no celular */
+    }
+    
+    .chapter-title {
+        font-size: 1.6rem;
+    }
+    
+    .chapter-content p {
+        font-size: 1.05rem;
+    }
+}
