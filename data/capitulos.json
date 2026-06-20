@@ -1,10 +1,9 @@
 [
-      {
-          "id": 1,
-              "titulo": "O Despertar",
-                  "descricao": "O início da jornada de Caleb.",
-                      "arquivo": "capitulo-01.html",
-                          "era": "Era Inicial"
-                            }
-                            ]
+  {
+    "id": 1,
+    "titulo": "Capítulo 1: O Despertar",
+    "descricao": "O início da jornada de Caleb.",
+    "arquivo": "capitulo1/capitulo1.html",
+    "era": "Era Inicial"
+  }
 ]
