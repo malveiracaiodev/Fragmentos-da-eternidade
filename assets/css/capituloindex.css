@@ -1,6 +1,6 @@
 /* ==========================================================================
    LAYOUT DO HUB DE CAPÍTULOS (capindex.html)
-   ========================================================================== */
+   ========================================================================= */
 .chapters-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -11,17 +11,21 @@
     position: relative;
 }
 
-/* --- BANNER DE FUNDO PARA O TOPO DA PÁGINA --- */
+/* --- BANNER DE FUNDO (CLAREADO PARA MOSTRAR OS CRISTAIS) --- */
 .chapter-header-banner {
     background: 
-        radial-gradient(circle at right, rgba(253, 186, 116, 0.15), transparent 45%),
-        radial-gradient(circle at left, rgba(59, 130, 246, 0.15), transparent 45%),
-        linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.5)),
+        /* Luz Dourada na Direita */
+        radial-gradient(circle at right, rgba(253, 186, 116, 0.25), transparent 60%),
+        /* Luz Azul na Esquerda */
+        radial-gradient(circle at left, rgba(59, 130, 246, 0.25), transparent 60%),
+        /* Sombra linear escura MUITO mais leve para não tapar a arte */
+        linear-gradient(to top, rgba(3, 7, 18, 0.6), rgba(3, 7, 18, 0.1)),
+        /* Imagem de Fundo */
         url('../images/banner.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 100px 20px;
+    padding: 130px 20px; /* Alinhado com a nova altura do index principal */
     text-align: center;
     border-bottom: 1px solid #1f2833;
 }
@@ -136,6 +140,7 @@
     display: block;
 }
 
+/* --- BOTÃO FLUTUANTE DE CAPÍTULOS PARA CELULAR --- */
 .mobile-chapters-toggle {
     display: none;
     position: fixed;
@@ -167,6 +172,7 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- AJUSTES DE RESPONSIVIDADE (CELULAR) --- */
 @media (max-width: 900px) {
     .chapters-layout {
         grid-template-columns: 1fr;
@@ -184,6 +190,7 @@
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
         border-radius: 0;
         overflow-y: auto;
+        background-color: rgba(6, 11, 24, 0.98); /* Fundo sólido para leitura no menu */
     }
 
     .sidebar.active {
