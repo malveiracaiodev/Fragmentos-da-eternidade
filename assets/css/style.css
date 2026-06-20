@@ -421,3 +421,67 @@ h1, h2, h3, .main-nav a {
         text-align: center;
     }
 }
+/* ==========================================
+   📱 RESPONSIVIDADE: MENU PARA CELULAR
+      ========================================== */
+      @media (max-width: 768px) {
+          /* Mantém o menu fixo, mas limita o tamanho dele */
+              .main-nav {
+                      position: fixed;
+                              bottom: 0; /* Colocar embaixo no celular melhora 100% a usabilidade com o polegar! */
+                                      top: auto;
+                                              left: 0;
+                                                      width: 100%;
+                                                              z-index: 9999;
+                                                                      background-color: rgba(3, 7, 18, 0.95); /* Fundo dark fantasy opaco */
+                                                                              border-top: 1px solid #1e293b;
+                                                                                      border-bottom: none;
+                                                                                              padding: 5px 0;
+                                                                                                      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8);
+                                                                                                          }
+
+                                                                                                              /* Força os links a ficarem todos em uma única linha horizontal */
+                                                                                                                  .main-nav ul {
+                                                                                                                          display: flex;
+                                                                                                                                  flex-direction: row; /* Alinha lado a lado */
+                                                                                                                                          flex-wrap: nowrap;  /* Impede de quebrar linha */
+                                                                                                                                                  overflow-x: auto;   /* Ativa a rolagem lateral se não couber */
+                                                                                                                                                          overflow-y: hidden;
+                                                                                                                                                                  padding: 5px 15px;
+                                                                                                                                                                          margin: 0;
+                                                                                                                                                                                  gap: 15px;
+                                                                                                                                                                                          scroll-behavior: smooth;
+                                                                                                                                                                                                  -webkit-overflow-scrolling: touch; /* Rolagem lisa no iOS */
+                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                          /* Esconde a barra de rolagem horrorosa do navegador para ficar limpo */
+                                                                                                                                                                                                              .main-nav ul::-webkit-scrollbar {
+                                                                                                                                                                                                                      display: none;
+                                                                                                                                                                                                                          }
+
+                                                                                                                                                                                                                              /* Ajusta o tamanho dos botões para o celular */
+                                                                                                                                                                                                                                  .main-nav li {
+                                                                                                                                                                                                                                          margin: 0;
+                                                                                                                                                                                                                                                  flex: 0 0 auto; /* Impede os botões de esmagarem */
+                                                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                                                          .main-nav a {
+                                                                                                                                                                                                                                                                  padding: 8px 12px;
+                                                                                                                                                                                                                                                                          font-size: 0.75rem; /* Letra menor para o HUD do celular */
+                                                                                                                                                                                                                                                                                  white-space: nowrap; /* Garante que o texto não quebre */
+                                                                                                                                                                                                                                                                                          display: flex;
+                                                                                                                                                                                                                                                                                                  flex-direction: column; /* Ícone em cima, texto embaixo */
+                                                                                                                                                                                                                                                                                                          align-items: center;
+                                                                                                                                                                                                                                                                                                                  gap: 4px;
+                                                                                                                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                                                                                                                          .main-nav a i {
+                                                                                                                                                                                                                                                                                                                                  font-size: 1rem; /* Ícone um pouco maior em destaque */
+                                                                                                                                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                                                                                                                                          /* Adiciona uma folga no final do site para o menu não tapar o rodapé */
+                                                                                                                                                                                                                                                                                                                                              body {
+                                                                                                                                                                                                                                                                                                                                                      padding-bottom: 70px;
+                                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                          
