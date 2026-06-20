@@ -204,3 +204,14 @@
         font-size: 1.05rem;
     }
 }
+
+/* --- BANNER DE FUNDO PARA O TOPO DA PÁGINA --- */
+.chapter-header-banner {
+    background-image: linear-gradient(to top, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.5)), url('../assets/images/banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px; /* Garante uma boa altura para destacar a arte */
+    text-align: center;
+    border-bottom: 1px solid #1f2833;
+}
