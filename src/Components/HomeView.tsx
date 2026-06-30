@@ -11,6 +11,38 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 space-y-12 animate-fade-in">
       
+      {/* BANNER MÍSTICO COM CHAMAS ANIMADAS */}
+      <div className="relative w-full h-64 rounded-xl overflow-hidden mb-8 border border-mythic-gold/20 bg-void-black shadow-2xl gold-glow-border">
+        
+        {/* Camada 1: O Efeito de Chamas Animadas (Azul -> Dourado) */}
+        <div className="absolute inset-0 animate-flames opacity-40 mix-blend-screen pointer-events-none" />
+        
+        {/* Camada 2: Vinheta escura nas bordas para garantir contraste total no texto */}
+        <div className="absolute inset-0 bg-gradient-to-r from-void-black via-transparent to-void-black opacity-90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-void-black opacity-60 pointer-events-none" />
+
+        {/* Detalhes de Linhas Douradas */}
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-mythic-gold to-transparent opacity-40" />
+        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-mythic-gold to-transparent opacity-40" />
+
+        {/* Conteúdo Centralizado (Sempre visível e legível) */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10 select-none">
+          <span className="text-xs uppercase tracking-[0.3em] text-mythic-gold mb-2 gold-glow">
+            Saga Épica de Fantasia
+          </span>
+          <h1 className="text-3xl md:text-5xl font-cinzel text-mythic-gold-light tracking-wider border-none m-0 p-0 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+            FRAGMENTOS DA ETERNIDADE
+          </h1>
+          <div className="w-24 h-[1px] bg-mythic-gold/40 my-3" />
+          <p className="text-sm italic font-light text-slate-300 max-w-md drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            "Em um mundo esquecido pelas estrelas, os deuses caem e o destino desperta."
+          </p>
+        </div>
+
+        {/* Partículas ou Textura Sutil de Fundo */}
+        <div className="absolute inset-0 parchment-pattern opacity-30 pointer-events-none" />
+      </div>
+
       {/* Grade Principal (Antigo container grid-layout) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
@@ -90,7 +122,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     </span>
                     <div>
                       <strong className="block text-xs text-white tracking-wide font-cinzel group-hover:text-mythic-gold transition-colors">PERSONAGENS</strong>
-                      <p className="text-[10px] text-gray-400">Conheça os protagonistas e lendas</p>
+                      <p className="text-[10px] text-gray-400">Conheça os protagonists e lendas</p>
                     </div>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-mythic-gold group-hover:translate-x-0.5 transition-all" />
@@ -152,11 +184,23 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         </div>
       </section>
 
-      {/* Rodapé Interno */}
-      <footer className="text-center py-6 border-t border-mythic-gold/5 text-[10px] font-mono text-gray-600 tracking-widest uppercase">
-        &copy; 2026 FRAGMENTOS DA ETERNIDADE. TODOS OS DIREITOS RESERVADOS.
-      </footer>
+{/* Rodapé Místico com Chamas Animadas */}
+      <footer className="relative w-full rounded-xl overflow-hidden border border-mythic-gold/20 bg-void-black shadow-2xl gold-glow-border py-6 text-center select-none">
+        
+        {/* O Efeito de Chamas Animadas ao Fundo */}
+        <div className="absolute inset-0 animate-flames opacity-25 mix-blend-screen pointer-events-none" />
+        
+        {/* Vinheta escura para garantir que o texto do rodapé fique bem legível */}
+        <div className="absolute inset-0 bg-gradient-to-r from-void-black via-void-black/40 to-void-black opacity-90 pointer-events-none" />
 
-    </div>
+        {/* Linha Dourada de Runas no topo do rodapé */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-mythic-gold/50 to-transparent opacity-50" />
+
+        {/* Texto do Rodapé (Em primeiro plano) */}
+        <div className="relative z-10 text-[10px] font-mono text-mythic-gold-light tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+          &copy; 2026 FRAGMENTOS DA ETERNIDADE. TODOS OS DIREITOS RESERVADOS.
+        </div>
+      </footer>
+      </div>
   );
 }

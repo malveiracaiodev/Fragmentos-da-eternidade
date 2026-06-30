@@ -1,52 +1,78 @@
 @import "tailwindcss";
 
-/* --- TEMA MÍSTICO: FRAGMENTOS DA ETERNIDADE --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
+/* Configurando o tema de forma nativa para o Tailwind v4 mapear as classes */
+@theme {
+  --font-cinzel: "Cinzel", serif;
+  --font-cinzel-deco: "Cinzel Decorative", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-mythic-gold: #c5a880;
+  --color-mythic-gold-dark: #8e734c;
+  --color-mythic-gold-light: #e5cdab;
+  --color-void-black: #050508;
+  --color-abyss-gray: #0b0c10;
+  --color-crimson-blood: #8b0000;
+  --color-ether-blue: #1c2b42;
+}
+
+/* --- CONFIGURAÇÕES GLOBAIS DO UNIVERSO --- */
 :root {
-  background-color: #0b0b0d;
+  background-color: #050508;
   color: #e2e8f0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   margin: 0;
   padding: 2rem;
-  background-color: #0b0b0d;
+  background-color: #050508;
   color: #e2e8f0;
+  font-family: var(--font-sans);
   display: flex;
   justify-content: center;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Container Principal */
 #root {
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
 }
 
-/* Títulos Importantes */
-h1, h2, h3 {
-  color: #f1f5f9;
-  letter-spacing: -0.025em;
+/* Títulos Místicos */
+h1, h2, h3, h4 {
+  font-family: var(--font-cinzel);
+  color: #e5cdab;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 2rem;
-  border-bottom: 2px solid #3f3f46;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 2.25rem;
+  border-bottom: 1px solid #4a3c28;
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
 }
 
-/* Botões Estilizados */
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Botões Estilizados de Fantasia */
 button, .btn {
-  background-color: #18181b;
-  color: #f4f4f5;
-  border: 1px solid #3f3f46;
-  padding: 0.5rem 1rem;
+  background-color: #0b0c10;
+  color: #e5cdab;
+  border: 1px solid #4a3c28;
+  padding: 0.6rem 1.2rem;
   border-radius: 0.375rem;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease-in-out;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -54,32 +80,110 @@ button, .btn {
 }
 
 button:hover {
-  background-color: #27272a;
-  border-color: #a1a1aa;
+  background-color: #1c2b42;
+  border-color: #c5a880;
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.2);
   transform: translateY(-1px);
 }
 
-/* Cards (Personagens / Armas) */
+/* Listas e Cards (Personagens / Armas / Capítulos) */
 ul {
   padding: 0;
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 li {
-  background-color: #18181b;
-  border: 1px solid #27272a;
-  padding: 1.25rem;
+  background-color: #0b0c10;
+  border: 1px solid #1c2b42;
+  padding: 1.5rem;
   border-radius: 0.5rem;
-  transition: border-color 0.2s;
+  transition: all 0.3s ease;
 }
 
 li:hover {
-  border-color: #52525b;
+  border-color: #c5a880;
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.1);
 }
 
-/* Textos secundários */
+/* Textos secundários descritivos */
 p {
-  color: #a1a1aa;
-  line-height: 1.6;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+/* --- EFEITOS ESPECIAIS E ANIMAÇÕES --- */
+
+/* Barras de rolagem customizadas */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050508;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a3c28;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8e734c;
+}
+
+/* Brilhos textuais e de borda */
+.gold-glow {
+  text-shadow: 0 0 10px rgba(197, 168, 128, 0.5), 0 0 20px rgba(197, 168, 128, 0.2);
+}
+
+.gold-glow-border {
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.15);
+}
+
+.crimson-glow {
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.6);
+}
+
+/* Padrões de fundo */
+.parchment-pattern {
+  background-image: radial-gradient(circle at center, rgba(11, 12, 16, 0.8) 0%, rgba(5, 5, 8, 0.98) 100%);
+}
+
+.rune-border {
+  border-image: linear-gradient(to right, #4a3c28, #c5a880, #4a3c28) 1;
+}
+
+/* Letra capitular para início de histórias */
+.dropcap::first-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3.5rem;
+  float: left;
+  line-height: 1;
+  padding-right: 0.5rem;
+  color: #c5a880;
+  text-shadow: 0 0 8px rgba(197, 168, 128, 0.4);
+}
+
+/* Animação das Chamas Etéreas (Transição de Azul para Dourado) */
+@keyframes mysticFlames {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(15deg) brightness(1.3);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+}
+
+.animate-flames {
+  background: linear-gradient(-45deg, #050508, #1c2b42, #8e734c, #c5a880, #050508);
+  background-size: 400% 400%;
+  animation: mysticFlames 12s ease infinite;
 }
