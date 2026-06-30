@@ -1,11 +1,5 @@
-import { ArsenalItem } from '../types';
-
-// Estendendo o tipo padrão para o sistema de progresso
-export interface SystemArsenalItem extends ArsenalItem {
-  unlockId: string | null; // null = liberada de início; string = precisa desse gatilho
-}
-
-export const ARSENAL: SystemArsenalItem[] = [
+// Apague o import antigo do topo e deixe assim:
+export const weapons: any[] = [
   {
     id: 'art-1',
     name: 'Espada do Alvorecer',

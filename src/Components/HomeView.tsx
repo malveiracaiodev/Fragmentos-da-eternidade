@@ -1,4 +1,4 @@
-import { BookOpen, Users, ShieldHalved, Gem, ChevronRight, Play, Info } from 'lucide-react';
+import { BookOpen, Users, Shield, Gem, ChevronRight, Play, Info } from 'lucide-react';
 import { useUniverse } from '../context/UniverseContext';
 
 interface HomeViewProps {
@@ -105,7 +105,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                 >
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
-                      <ShieldHalved className="w-4 h-4" />
+                      <Shield className="w-4 h-4" />
                     </span>
                     <div>
                       <strong className="block text-xs text-white tracking-wide font-cinzel group-hover:text-mythic-gold transition-colors">ARMAS</strong>

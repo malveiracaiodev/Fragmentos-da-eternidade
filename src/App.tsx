@@ -9,10 +9,10 @@ import { UniverseProvider } from './context/UniverseContext';
 import HomeView from './components/HomeView';
 import ChapterOneView from './components/ChapterOneView';
 import CharactersView from './components/CharactersView';
-import WeaponsView from './components/WeaponsView';
-import LoreUniverseView from './components/LoreUniverseView';
+// import WeaponsView from './components/WeaponsView';
+// import LoreUniverseView from './components/LoreUniverseView';
 
-import { CHAPTERS, CHARACTERS, ARSENAL, LORE_ENTRIES } from './data';
+import { CHARACTERS } from './data';
 
 export default function App() {
   // Controle de estados de navegação focados no seu escopo atual
@@ -30,7 +30,7 @@ export default function App() {
         
       case 'capitulo1':
         // Renderiza diretamente a página focada no início da sua jornada
-        return <ChapterOneView chapter={CHAPTERS[0]} />;
+        return <ChapterOneView />;
         
       case 'personagens':
         // Focado no Caleb e nos personagens iniciais deste arco
@@ -38,11 +38,11 @@ export default function App() {
         
       case 'armas':
         // Renderizador estrutural do Arsenal de Artefatos
-        return <WeaponsView arsenal={ARSENAL} />;
+       return <div className="text-white p-8 font-cinzel">Em breve: Arsenal</div>;
         
       case 'universo':
         // Base de conhecimento conceitual da primeira era da história
-        return <LoreUniverseView lore={LORE_ENTRIES} />;
+        return <div className="text-white p-8 font-cinzel">Em breve: Universo</div>;
         
       default:
         // Tela 404 Integrada - Protege o usuário caso ele caia em links futuros ou rotas rompidas

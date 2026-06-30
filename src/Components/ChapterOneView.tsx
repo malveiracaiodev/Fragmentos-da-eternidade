@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Flame, Unlock, CheckCircle, BookOpen } from 'lucide-react';
-import { verificarSegredoDesbloqueado, desbloquearSegredo } from '../utils/storageHelper';
+import { Flame, BookOpen } from 'lucide-react';
 import { CHAPTER_ONE_SCENES } from '../data/chaptersData';
+import { useUniverse } from '../context/UniverseContext';
 
 export default function ChapterOneView() {
-  const [calebAtivo, setCalebAtivo] = useState(false);
+  // Puxa o estado atualizado e as funções do motor global
+  const { state, unlockCalebOrigin, unlockCharacter } = useUniverse();
 
-  useEffect(() => {
-    setCalebAtivo(verificarSegredoDesbloqueado('caleb_origin'));
-  }, []);
+  const calebAtivo = state.characters.caleb.origin;
+  const kyloAtivo = state.characters.kylo?.unlocked;
 
   return (
     <div className="min-h-[calc(100vh-4rem)] pt-12 pb-24 px-4 md:px-8 max-w-3xl mx-auto space-y-16">
@@ -56,56 +55,49 @@ export default function ChapterOneView() {
         </section>
       ))}
 
-      {/* Gatilho de Progresso mantido no final */}
-      <div className="p-4 border border-mythic-gold/15 rounded-xl bg-void-black/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="text-center sm:text-left">
+      {/* Gatilhos de Progresso unificados no final */}
+      <div className="p-5 border border-mythic-gold/15 rounded-xl bg-void-black/40 space-y-4">
+        <div className="text-center sm:text-left border-b border-mythic-gold/10 pb-2">
           <h4 className="font-cinzel text-xs font-bold text-white uppercase">Ressonância de Éter</h4>
-          <p className="text-[11px] text-gray-400">Ative os dados do Caleb após a leitura.</p>
+          <p className="text-[11px] text-gray-400">Ative os fragmentos de memórias do universo após a leitura.</p>
         </div>
-        <button
-          onClick={() => { if (desbloquearSegredo('caleb_origin')) setCalebAtivo(true); }}
-          disabled={calebAtivo}
-          className={`px-4 py-2 rounded-lg text-xs font-cinzel tracking-widest transition-all ${
-            calebAtivo ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-mythic-gold/5 border border-mythic-gold/30 text-mythic-gold hover:bg-mythic-gold/10'
-          }`}
-        >
-          {calebAtivo ? 'Ativo' : 'Ativar Ficha'}
-        </button>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Controle do Caleb */}
+          <div className="flex flex-col items-center sm:items-start">
+            <span className="text-xs text-white font-mono">Origem de Caleb</span>
+            <button
+              onClick={unlockCalebOrigin}
+              disabled={calebAtivo}
+              className={`mt-1.5 px-4 py-2 rounded-lg text-xs font-cinzel tracking-widest transition-all ${
+                calebAtivo ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-mythic-gold/5 border border-mythic-gold/30 text-mythic-gold hover:bg-mythic-gold/10'
+              }`}
+            >
+              {calebAtivo ? 'Fragmento Ativo' : 'Restaurar Memória'}
+            </button>
+          </div>
+
+          {/* Controle do Kylo */}
+          <div className="flex flex-col items-center sm:items-end">
+            <span className="text-xs text-white font-mono">Ficha de Kylo Tsurugi</span>
+            <button
+              onClick={() => unlockCharacter('kylo', 'Kylo Tsurugi')}
+              disabled={kyloAtivo}
+              className={`mt-1.5 px-4 py-2 rounded-lg text-xs font-cinzel tracking-widest transition-all ${
+                kyloAtivo ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-mythic-gold/5 border border-mythic-gold/30 text-mythic-gold hover:bg-mythic-gold/10'
+              }`}
+            >
+              {kyloAtivo ? "Ficha Ativa na Wiki" : "Desbloquear Kylo"}
+            </button>
+          </div>
+        </div>
+
+        {/* Indicador Global */}
+        <div className="text-center text-[10px] font-mono uppercase tracking-widest text-mythic-gold/70 pt-2 border-t border-mythic-gold/5">
+          Fragmentos Globais Coletados: {state.lore.globalFragments}
+        </div>
       </div>
 
-    </div>
-  );
-}
-import { useUniverse } from '../context/UniverseContext';
-
-export default function ChapterOneView() {
-  // Puxa o estado atualizado e as funções do motor global
-  const { state, unlockCalebOrigin, unlockCharacter } = useUniverse();
-
-  const calebAtivo = state.characters.caleb.origin;
-  const kyloAtivo = state.characters.kylo?.unlocked;
-
-  return (
-    <div>
-      {/* Botão de desbloqueio do Caleb baseado no motor limpo */}
-      <button 
-        onClick={unlockCalebOrigin}
-        disabled={calebAtivo}
-      >
-        {calebAtivo ? "Fragmento Ativo" : "Restaurar Memória"}
-      </button>
-
-      {/* Botão de desbloqueio do Kylo Tsurugi */}
-      <button 
-        onClick={() => unlockCharacter('kylo', 'Kylo Tsurugi')}
-        disabled={kyloAtivo}
-      >
-        {kyloAtivo ? "Ficha Ativa na Wiki" : "Desbloquear Kylo"}
-      </button>
-
-      <div className="text-xs text-mythic-gold mt-4">
-        Fragmentos Globais Coletados: {state.lore.globalFragments}
-      </div>
     </div>
   );
 }
