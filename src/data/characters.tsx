@@ -1,26 +1,26 @@
-import { useProgresso } from '../context/ProgressoContext';
+import { useUniverse } from '../context/UniverseContext';
 import { Character } from '../types';
-import { motion } from 'framer-motion'; // <-- Importação adicionada para a animação funcionar!
+import { motion } from 'framer-motion';
 
 export default function CalebDetailCard({ character }: { character: Character }) {
-  const { verificarDesbloqueio } = useProgresso();
+  const { state } = useUniverse();
   
-  // Verifica se o fragmento de origem do Caleb está ativo
-  const estaAtivo = verificarDesbloqueio(character.unlockKey || '');
+  // Consome diretamente do estado unificado do universo
+  const estaAtivo = state.characters.caleb.origin;
 
   return (
     <div className="space-y-6">
-      {/* Imagem com Aura Dinâmica Baseada no Desbloqueio Legado */}
+      {/* Imagem com Aura Dinâmica Baseada no Desbloqueio */}
       <div className="relative rounded-xl overflow-hidden group border border-mythic-gold/15">
-  <img 
-    src={character.imageUrl} 
-    className={`w-full transition-all duration-700 ${estaAtivo ? 'grayscale-0' : 'grayscale'}`} 
-  />
-  {/* Efeito de Aura Azul/Dourada caso ativo */}
-  <div className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none mix-blend-screen ${
-    estaAtivo ? 'opacity-40 shadow-[inset_0_0_80px_rgba(0,170,255,0.8)]' : 'opacity-0'
-  }`} />
-</div>
+        <img 
+          src={character.imageUrl} 
+          className={`w-full transition-all duration-700 ${estaAtivo ? 'grayscale-0' : 'grayscale'}`} 
+        />
+        {/* Efeito de Aura Azul/Dourada caso ativo */}
+        <div className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none mix-blend-screen ${
+          estaAtivo ? 'opacity-40 shadow-[inset_0_0_80px_rgba(0,170,255,0.8)]' : 'opacity-0'
+        }`} />
+      </div>
 
       {/* Caixa de Status Reativa */}
       <div className="flex justify-between text-xs font-mono border-b border-mythic-gold/10 pb-2">

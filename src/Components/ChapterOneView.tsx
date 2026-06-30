@@ -1,9 +1,8 @@
 import { Flame, BookOpen } from 'lucide-react';
-import { CHAPTER_ONE_SCENES } from '../data/chaptersData';
+import { CHAPTERS as CHAPTER_ONE_SCENES } from '../data'; // Unificado para ler do arquivo index da pasta data
 import { useUniverse } from '../context/UniverseContext';
 
 export default function ChapterOneView() {
-  // Puxa o estado atualizado e as funções do motor global
   const { state, unlockCalebOrigin, unlockCharacter } = useUniverse();
 
   const calebAtivo = state.characters.caleb.origin;
@@ -21,7 +20,7 @@ export default function ChapterOneView() {
       </div>
 
       {/* Loop pelas Cenas Dinâmicas */}
-      {CHAPTER_ONE_SCENES.map((cena, index) => (
+      {CHAPTER_ONE_SCENES && CHAPTER_ONE_SCENES.map((cena: any, index: number) => (
         <section key={index} className="space-y-6">
           <h2 className="font-cinzel text-sm font-bold tracking-widest text-mythic-gold border-b border-mythic-gold/10 pb-1.5 flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-mythic-gold/60" />
@@ -29,18 +28,15 @@ export default function ChapterOneView() {
           </h2>
 
           <div className="space-y-4 text-gray-300 font-sans font-light text-sm leading-relaxed text-justify">
-            {cena.blocks.map((bloco) => {
-              // Se o bloco for texto normal
+            {cena.blocks?.map((bloco: any) => {
               if (bloco.text) return <p key={bloco.id}>{bloco.text}</p>;
 
-              // Se o bloco for diálogo estilizado
               if (bloco.dialogue) return (
                 <p key={bloco.id} className="font-cinzel text-sm text-mythic-gold pl-4 border-l border-mythic-gold/40 italic my-3">
                   {bloco.dialogue}
                 </p>
               );
 
-              // Se o bloco for um vídeo dinâmico colocado na pasta pública
               if (bloco.videoUrl) return (
                 <div key={bloco.id} className="my-6 rounded-xl overflow-hidden border border-mythic-gold/15 bg-void-black/80 aspect-video shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                   <video className="w-full h-full object-cover" autoPlay loop muted playsInline>

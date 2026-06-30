@@ -51,7 +51,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                 <span className="text-mythic-gold text-base tracking-wider font-bold">O DESPERTAR</span>
               </h2>
               <p className="text-xs text-gray-400 font-sans leading-relaxed">
-                Em um mundo esquecido pelas estrelas, um jovem começa a despertar para um destino que pode mudar tudo.
+                Em um mundo esquecido pelas estrelas, um jovem começa a despertar para um destiny que pode mudar tudo.
               </p>
             </div>
             <div className="flex items-center justify-between pt-6 border-t border-mythic-gold/10">
@@ -100,7 +100,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               {/* Armas */}
               <li>
                 <button 
-                  onClick={() => onNavigate('wiki-armas')} // Rotas tratadas temporariamente pelo menu wiki
+                  onClick={() => onNavigate('wiki-armas')}
                   className="w-full flex items-center justify-between p-2.5 rounded-lg border border-transparent hover:border-mythic-gold/10 hover:bg-mythic-gold/5 transition-all text-left group cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
@@ -142,7 +142,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="border border-mythic-gold/5 rounded-lg p-6 md:p-8 space-y-4 relative overflow-hidden">
           <h2 className="font-cinzel text-xl font-bold tracking-wider text-white">SOBRE A OBRA</h2>
           <p className="text-xs text-gray-400 font-sans leading-relaxed max-w-4xl">
-            Fragmentos da Eternity é uma saga épica que acompanha Caleb e seu irmão gêmeo em uma jornada através de eras, deuses e mistérios que precedem a própria criação do mundo. Uma história de poder, escolhas e o destino que aguarda aqueles que carregam fragmentos do impossível.
+            Fragmentos da Eternidade é uma saga épica que acompanha Caleb e seu irmão gêmeo em uma jornada através de eras, deuses e mistérios que precedem a própria criação do mundo. Uma história de poder, escolhas e o destino que aguarda aqueles que carregam fragmentos do impossível.
           </p>
           <div className="pt-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-cinzel text-xs text-gray-300 tracking-wider hover:bg-white/10 transition-all cursor-pointer">

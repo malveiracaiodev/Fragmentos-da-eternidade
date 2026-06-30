@@ -1,7 +1,33 @@
-import CHARACTERS from './data/characters'; // Sem as chavetas {}, pois deve ser o export default
-import { weapons as ARSENAL } from './data/weapons'; // Mudámos para 'weapons' com chavetas, que vamos ajustar abaixo
-import { CHAPTER_ONE_SCENES as CHAPTERS } from './data/chaptersData';
+// Importe apenas o TIPO (com letra maiúscula e singular) se precisar tipar algo 
+import { capitulo1 } from './data/chapters/capitulo1'; // Caminho para o arquivo modularizado[cite: 20]
 
-const LORE_ENTRIES: any[] = [];
+// Se você precisar exportar a tipagem dos blocos de parágrafos
+export interface ParagraphBlock {
+  id?: string;
+  tipo: 'paragrafo' | 'dialogo' | 'video';
+  texto?: string;
+  src?: string;
+}
 
-export { CHARACTERS, ARSENAL, CHAPTERS, LORE_ENTRIES };
+export interface Scene {
+  tituloCena: string;
+  conteudo: ParagraphBlock[];
+}
+
+export interface Chapter {
+  id: string;
+  numero: number;
+  titulo: string;
+  subtitulo: string;
+  cenas: Scene[];
+}
+
+// Exportação unificada dos capítulos usando o seu arquivo real[cite: 20]
+export const CHAPTERS: Chapter[] = [
+  capitulo1 as unknown as Chapter
+];
+
+// Suas armas rúnicas continuam aqui embaixo...
+export const weapons: any[] = [
+  // ... seus dados de armas
+];
